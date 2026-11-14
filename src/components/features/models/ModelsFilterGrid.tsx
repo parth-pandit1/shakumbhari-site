@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { ModelCard } from "@/components/common/ModelCard";
+import { useState, useMemo } from "react";
+import { ModelCard } from "./ModelCard";
 import type { Model } from "@/content/schemas";
 
 interface ModelsFilterGridProps {
@@ -14,28 +14,29 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
   const [rangeFilter, setRangeFilter] = useState<string>("all");
   const [selectedType, setSelectedType] = useState<string>("all");
 
-  // Determine unique vehicle types
   const types = useMemo(() => {
     return Array.from(new Set(models.map((m) => m.type)));
   }, [models]);
 
   const filteredModels = useMemo(() => {
     return models.filter((model) => {
-      // Type filter (only relevant if more than one type exists)
       if (types.length > 1 && selectedType !== "all" && model.type !== selectedType) {
         return false;
       }
 
-      // Budget filter
       if (budgetFilter === "under-70k") {
         if (!model.priceExShowroom || model.priceExShowroom >= 70000) return false;
       } else if (budgetFilter === "70k-85k") {
-        if (!model.priceExShowroom || model.priceExShowroom < 70000 || model.priceExShowroom > 85000) return false;
+        if (
+          !model.priceExShowroom ||
+          model.priceExShowroom < 70000 ||
+          model.priceExShowroom > 85000
+        )
+          return false;
       } else if (budgetFilter === "above-85k") {
         if (!model.priceExShowroom || model.priceExShowroom <= 85000) return false;
       }
 
-      // Range filter
       if (rangeFilter === "60-plus") {
         if (!model.claimedRangeKm || model.claimedRangeKm < 60) return false;
       } else if (rangeFilter === "80-plus") {
@@ -56,14 +57,15 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
 
   return (
     <div>
-      {/* Filter Toolbar */}
       <div className="p-4 sm:p-6 bg-surface-white border border-border-subtle rounded-2xl mb-8 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-3">
-            {/* Show type filter ONLY if more than one type exists */}
             {types.length > 1 && (
               <div>
-                <label htmlFor="type-filter" className="block text-xs font-semibold text-text-heading mb-1">
+                <label
+                  htmlFor="type-filter"
+                  className="block text-xs font-semibold text-text-heading mb-1"
+                >
                   Vehicle Type
                 </label>
                 <select
@@ -82,9 +84,11 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
               </div>
             )}
 
-            {/* Budget Filter */}
             <div>
-              <label htmlFor="budget-filter" className="block text-xs font-semibold text-text-heading mb-1">
+              <label
+                htmlFor="budget-filter"
+                className="block text-xs font-semibold text-text-heading mb-1"
+              >
                 Budget (Ex-Showroom)
               </label>
               <select
@@ -100,9 +104,11 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
               </select>
             </div>
 
-            {/* Claimed Range Filter */}
             <div>
-              <label htmlFor="range-filter" className="block text-xs font-semibold text-text-heading mb-1">
+              <label
+                htmlFor="range-filter"
+                className="block text-xs font-semibold text-text-heading mb-1"
+              >
                 Claimed Range
               </label>
               <select
@@ -136,7 +142,6 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
         </div>
       </div>
 
-      {/* Models Grid */}
       {filteredModels.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredModels.map((model) => (

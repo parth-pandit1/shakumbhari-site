@@ -1,19 +1,24 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { Button } from "@/components/ui/Button";
+import { useState, useMemo } from "react";
+import { Button } from "@/components/ui";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { DEFAULT_RUNNING_COST, DISCLAIMERS } from "@/lib/constants";
 
-interface RunningCostEstimatorProps {
+export interface RunningCostEstimatorProps {
   phone: string;
 }
 
 export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
-  const [dailyKm, setDailyKm] = useState(30);
-  const [petrolPrice, setPetrolPrice] = useState(96);
-  const [petrolMileage, setPetrolMileage] = useState(45);
-  const [electricityRate, setElectricityRate] = useState(7.5);
-  const [evUnitsPer100km, setEvUnitsPer100km] = useState(3.0);
+  const [dailyKm, setDailyKm] = useState<number>(DEFAULT_RUNNING_COST.DAILY_KM);
+  const [petrolPrice, setPetrolPrice] = useState<number>(DEFAULT_RUNNING_COST.PETROL_PRICE);
+  const [petrolMileage, setPetrolMileage] = useState<number>(DEFAULT_RUNNING_COST.PETROL_MILEAGE);
+  const [electricityRate, setElectricityRate] = useState<number>(
+    DEFAULT_RUNNING_COST.ELECTRICITY_RATE
+  );
+  const [evUnitsPer100km, setEvUnitsPer100km] = useState<number>(
+    DEFAULT_RUNNING_COST.EV_UNITS_PER_100KM
+  );
 
   const stats = useMemo(() => {
     // Petrol calculation
@@ -56,9 +61,7 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
             <label htmlFor="daily-km" className="text-sm font-bold text-text-heading">
               Daily Riding Distance
             </label>
-            <span className="text-base font-bold text-brand-primary">
-              {dailyKm} km/day
-            </span>
+            <span className="text-base font-bold text-brand-primary">{dailyKm} km/day</span>
           </div>
           <input
             id="daily-km"
@@ -83,7 +86,10 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="petrol-price" className="block text-xs font-semibold text-text-muted mb-1">
+              <label
+                htmlFor="petrol-price"
+                className="block text-xs font-semibold text-text-muted mb-1"
+              >
                 Petrol Price (₹/Litre): <strong>₹{petrolPrice}</strong>
               </label>
               <input
@@ -98,7 +104,10 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
             </div>
 
             <div>
-              <label htmlFor="petrol-mileage" className="block text-xs font-semibold text-text-muted mb-1">
+              <label
+                htmlFor="petrol-mileage"
+                className="block text-xs font-semibold text-text-muted mb-1"
+              >
                 Petrol Mileage (km/L): <strong>{petrolMileage} km/L</strong>
               </label>
               <input
@@ -121,7 +130,10 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="elec-rate" className="block text-xs font-semibold text-text-muted mb-1">
+              <label
+                htmlFor="elec-rate"
+                className="block text-xs font-semibold text-text-muted mb-1"
+              >
                 Electricity Rate (₹/kWh unit): <strong>₹{electricityRate}</strong>
               </label>
               <input
@@ -137,7 +149,10 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
             </div>
 
             <div>
-              <label htmlFor="ev-consumption" className="block text-xs font-semibold text-text-muted mb-1">
+              <label
+                htmlFor="ev-consumption"
+                className="block text-xs font-semibold text-text-muted mb-1"
+              >
                 Energy per 100 km: <strong>{evUnitsPer100km} units</strong>
               </label>
               <input
@@ -164,9 +179,7 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
 
           <div className="text-4xl sm:text-5xl font-extrabold text-success-solid tracking-tight mb-1">
             ₹{stats.annualSavings.toLocaleString("en-IN")}
-            <span className="text-sm sm:text-base font-semibold text-text-muted ml-1">
-              /year
-            </span>
+            <span className="text-sm sm:text-base font-semibold text-text-muted ml-1">/year</span>
           </div>
           <p className="text-xs text-text-muted mb-6">
             Approx. ₹{stats.monthlySavings.toLocaleString("en-IN")} saved every month
@@ -198,18 +211,12 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
 
           {/* Estimate Label / Disclaimer */}
           <div className="p-3.5 rounded-xl bg-surface-grey border border-border-subtle mt-6 text-xs text-text-muted leading-relaxed">
-            <strong>Estimation Notice:</strong> These figures are indicative estimates based on typical driving patterns and electricity tariffs in Haryana. Actual costs depend on your driving style, battery health, and domestic power rates.
+            <strong>Estimation Notice:</strong> {DISCLAIMERS.RUNNING_COST}
           </div>
         </div>
 
         <div className="mt-8 pt-4">
-          <Button
-            href={whatsappUrl}
-            isExternal
-            variant="whatsapp"
-            size="lg"
-            fullWidth
-          >
+          <Button href={whatsappUrl} isExternal variant="whatsapp" size="lg" fullWidth>
             Find a Scooter for Your Daily Commute
           </Button>
         </div>

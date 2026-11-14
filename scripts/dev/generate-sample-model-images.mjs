@@ -1,3 +1,4 @@
+// One-off development generator. Can be deleted once real model photography is provided.
 import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
@@ -73,9 +74,7 @@ for (const m of models) {
 </svg>
   `;
 
-  const webpBuffer = await sharp(Buffer.from(svg))
-    .webp({ quality: 90 })
-    .toBuffer();
+  const webpBuffer = await sharp(Buffer.from(svg)).webp({ quality: 90 }).toBuffer();
 
   const outPath = path.join(outDir, `${m.id}.webp`);
   fs.writeFileSync(outPath, webpBuffer);

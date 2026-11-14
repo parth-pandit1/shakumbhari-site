@@ -10,10 +10,7 @@ import {
 describe("buildWhatsAppLink", () => {
   it("builds valid wa.me link with country code 91 and URL-encoded message", () => {
     const link = buildWhatsAppLink("8168241095", "Hello, I am interested");
-    assert.strictEqual(
-      link,
-      "https://wa.me/918168241095?text=Hello%2C%20I%20am%20interested"
-    );
+    assert.strictEqual(link, "https://wa.me/918168241095?text=Hello%2C%20I%20am%20interested");
   });
 
   it("handles special characters and spaces cleanly", () => {
@@ -23,28 +20,16 @@ describe("buildWhatsAppLink", () => {
   });
 
   it("throws error for phone with less than 10 digits", () => {
-    assert.throws(
-      () => buildWhatsAppLink("816824109", "Hello"),
-      /Invalid phone number/
-    );
+    assert.throws(() => buildWhatsAppLink("816824109", "Hello"), /Invalid phone number/);
   });
 
   it("throws error for phone with more than 10 digits", () => {
-    assert.throws(
-      () => buildWhatsAppLink("918168241095", "Hello"),
-      /Invalid phone number/
-    );
+    assert.throws(() => buildWhatsAppLink("918168241095", "Hello"), /Invalid phone number/);
   });
 
   it("throws error for phone containing non-digit characters", () => {
-    assert.throws(
-      () => buildWhatsAppLink("816824109a", "Hello"),
-      /Invalid phone number/
-    );
-    assert.throws(
-      () => buildWhatsAppLink("+9181682410", "Hello"),
-      /Invalid phone number/
-    );
+    assert.throws(() => buildWhatsAppLink("816824109a", "Hello"), /Invalid phone number/);
+    assert.throws(() => buildWhatsAppLink("+9181682410", "Hello"), /Invalid phone number/);
   });
 });
 

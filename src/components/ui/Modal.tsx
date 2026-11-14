@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 
-interface ModalProps {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   description?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   maxWidth?: "sm" | "md" | "lg";
 }
 
@@ -50,11 +50,7 @@ export function Modal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-fast"
     >
       {/* Backdrop tap to close */}
-      <div
-        className="fixed inset-0 -z-10"
-        onClick={onClose}
-        aria-hidden="true"
-      />
+      <div className="fixed inset-0 -z-10" onClick={onClose} aria-hidden="true" />
 
       <div
         className={`w-full ${maxWidthClasses} bg-surface-white rounded-2xl border border-border-subtle shadow-xl overflow-hidden p-6 relative`}
@@ -65,10 +61,7 @@ export function Modal({
               {title}
             </h2>
             {description && (
-              <p
-                id="modal-description"
-                className="mt-1 text-sm text-text-muted"
-              >
+              <p id="modal-description" className="mt-1 text-sm text-text-muted">
                 {description}
               </p>
             )}

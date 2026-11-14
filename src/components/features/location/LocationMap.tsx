@@ -1,20 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/Button";
+import { useState } from "react";
+import { Button } from "@/components/ui";
+import { ROUTES } from "@/lib/constants";
 
-interface LocationMapProps {
+export interface LocationMapProps {
   mapsLink: string | null;
   mapsEmbedSrc: string | null;
   addressText: string;
 }
 
-export function LocationMap({
-  mapsLink,
-  mapsEmbedSrc,
-  addressText,
-}: LocationMapProps) {
-  const [loadMap, setLoadMap] = useState(false);
+export function LocationMap({ mapsLink, mapsEmbedSrc, addressText }: LocationMapProps) {
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   return (
     <div className="rounded-2xl border border-border-subtle bg-surface-white overflow-hidden shadow-sm">
@@ -22,21 +19,12 @@ export function LocationMap({
         <div className="inline-block px-3 py-1 mb-3 rounded-full bg-brand-tint text-brand-primary text-xs font-semibold uppercase tracking-wider">
           Visit Showroom
         </div>
-        <h3 className="text-2xl sm:text-3xl font-bold text-text-heading mb-2">
-          Find Us in Ledi
-        </h3>
-        <p className="text-base text-text-muted mb-6 max-w-xl">
-          {addressText}
-        </p>
+        <h3 className="text-2xl sm:text-3xl font-bold text-text-heading mb-2">Find Us in Ledi</h3>
+        <p className="text-base text-text-muted mb-6 max-w-xl">{addressText}</p>
 
         <div className="flex flex-wrap items-center gap-4">
           {mapsLink && (
-            <Button
-              href={mapsLink}
-              isExternal
-              variant="primary"
-              size="md"
-            >
+            <Button href={mapsLink} isExternal variant="primary" size="md">
               <svg
                 className="mr-2 h-4 w-4"
                 viewBox="0 0 24 24"
@@ -53,7 +41,7 @@ export function LocationMap({
             </Button>
           )}
 
-          <Button href="/test-ride" variant="outline" size="md">
+          <Button href={ROUTES.TEST_RIDE} variant="outline" size="md">
             Schedule Showroom Visit
           </Button>
         </div>
@@ -62,7 +50,7 @@ export function LocationMap({
       {/* Embedded Map Section: Click-to-load (Amendment 11 & 16) */}
       {mapsEmbedSrc ? (
         <div className="border-t border-border-subtle bg-surface-grey relative min-h-[340px] flex items-center justify-center">
-          {loadMap ? (
+          {isMapLoaded ? (
             <iframe
               src={mapsEmbedSrc}
               title="Shakumbhari Automobile showroom location map"
@@ -91,17 +79,11 @@ export function LocationMap({
                   <circle cx="12" cy="10" r="3" />
                 </svg>
               </div>
-              <p className="text-sm text-text-body font-medium mb-1">
-                Interactive Google Map
-              </p>
+              <p className="text-sm text-text-body font-medium mb-1">Interactive Google Map</p>
               <p className="text-xs text-text-muted mb-4">
                 To protect your privacy, map tiles load only when requested.
               </p>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setLoadMap(true)}
-              >
+              <Button variant="outline" size="sm" onClick={() => setIsMapLoaded(true)}>
                 Show Map
               </Button>
             </div>

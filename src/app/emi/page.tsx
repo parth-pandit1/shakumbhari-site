@@ -1,7 +1,7 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { EmiCalculator } from "@/components/tools/EmiCalculator";
+import { Container } from "@/components/ui";
+import { EmiCalculator } from "@/components/features/emi/EmiCalculator";
 import { getSite } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -24,7 +24,8 @@ export default function EmiPage() {
             Electric Scooter EMI Calculator
           </h1>
           <p className="mt-2 text-base text-text-muted max-w-2xl">
-            Estimate your monthly payments using standard reducing balance calculation. Adjust your scooter price, down payment, loan duration, and estimated interest rate.
+            Estimate your monthly payments using standard reducing balance calculation. Adjust your
+            scooter price, down payment, loan duration, and estimated interest rate.
           </p>
         </div>
 

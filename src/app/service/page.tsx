@@ -1,7 +1,6 @@
-import React from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { ServiceBookingForm } from "@/components/forms/ServiceBookingForm";
+import { Container } from "@/components/ui";
+import { ServiceBookingForm } from "@/components/features/forms/ServiceBookingForm";
 import { getSite, getServices } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -25,7 +24,8 @@ export default function ServicePage() {
             Showroom Service &amp; Spare Parts
           </h1>
           <p className="mt-2 text-base text-text-muted">
-            Routine servicing, brake tune-ups, electrical system checks, and replacement spare parts for two-wheelers in Ledi.
+            Routine servicing, brake tune-ups, electrical system checks, and replacement spare parts
+            for two-wheelers in Ledi.
           </p>
         </div>
 
@@ -39,12 +39,8 @@ export default function ServicePage() {
               <div className="inline-block px-2.5 py-1 rounded bg-brand-tint text-brand-primary text-xs font-bold uppercase tracking-wider mb-3">
                 Confirmed Service
               </div>
-              <h2 className="text-xl font-bold text-text-heading mb-2">
-                {svc.name.en}
-              </h2>
-              <p className="text-sm text-text-body leading-relaxed">
-                {svc.description.en}
-              </p>
+              <h2 className="text-xl font-bold text-text-heading mb-2">{svc.name.en}</h2>
+              <p className="text-sm text-text-body leading-relaxed">{svc.description.en}</p>
             </div>
           ))}
         </div>
@@ -52,11 +48,10 @@ export default function ServicePage() {
         {/* Booking Form */}
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-text-heading">
-              Book a Service Appointment
-            </h2>
+            <h2 className="text-2xl font-bold text-text-heading">Book a Service Appointment</h2>
             <p className="text-xs text-text-muted mt-1">
-              Select your service type and date to confirm scheduling directly with our mechanics on WhatsApp.
+              Select your service type and date to confirm scheduling directly with our mechanics on
+              WhatsApp.
             </p>
           </div>
 

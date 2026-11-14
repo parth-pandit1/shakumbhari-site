@@ -1,17 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Offer } from "@/content/schemas";
 
-interface OffersBannerProps {
+export interface OffersBannerProps {
   offers: Offer[];
 }
 
 export function OffersBanner({ offers }: OffersBannerProps) {
-  const [dismissed, setDismissed] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
 
   // Gated: renders ONLY when an active offer exists
-  if (offers.length === 0 || dismissed) {
+  if (offers.length === 0 || isDismissed) {
     return null;
   }
 
@@ -34,7 +34,7 @@ export function OffersBanner({ offers }: OffersBannerProps) {
 
       <button
         type="button"
-        onClick={() => setDismissed(true)}
+        onClick={() => setIsDismissed(true)}
         aria-label="Dismiss offer banner"
         className="text-white/80 hover:text-white p-1 rounded transition-colors shrink-0 ml-2"
       >

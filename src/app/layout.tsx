@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { fontSans, fontDisplay } from "./fonts";
 import "./globals.css";
 import { getSite, getOffers } from "@/lib/content";
@@ -27,11 +28,7 @@ export const metadata: Metadata = {
       },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const site = getSite();
   const offers = getOffers();
 
@@ -58,19 +55,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fontSans.variable} ${fontDisplay.variable}`}>
       <body className="min-h-screen bg-surface-white text-text-body antialiased flex flex-col">
-        {jsonLd && (
-          <script type="application/ld+json">
-            {JSON.stringify(jsonLd)}
-          </script>
-        )}
+        {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
         <OffersBanner offers={offers} />
         <Header phone={site.phone} shopName={site.shopName.en} />
         <main className="flex-1 pb-16 sm:pb-0">{children}</main>
         <Footer site={site} />
-        <MobileStickyBar
-          phone={site.phone}
-          whatsappNumber={site.whatsappNumber}
-        />
+        <MobileStickyBar phone={site.phone} whatsappNumber={site.whatsappNumber} />
       </body>
     </html>
   );

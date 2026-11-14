@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
+import { NAV_LINKS, ROUTES } from "@/lib/constants";
 
-interface HeaderProps {
+export interface HeaderProps {
   phone: string;
   shopName: string;
 }
@@ -13,21 +14,12 @@ interface HeaderProps {
 export function Header({ phone, shopName }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/models", label: "Models" },
-    { href: "/compare", label: "Compare" },
-    { href: "/emi", label: "EMI" },
-    { href: "/running-cost", label: "Running Cost" },
-    { href: "/service", label: "Service" },
-  ];
-
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border-subtle bg-surface-white/90 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo & Name */}
         <Link
-          href="/"
+          href={ROUTES.HOME}
           className="flex items-center gap-3 focus-visible:outline-offset-4 rounded-lg group"
         >
           <div className="relative h-10 w-16 sm:h-12 sm:w-20 flex items-center justify-center overflow-hidden">
@@ -52,7 +44,7 @@ export function Header({ phone, shopName }: HeaderProps) {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-6" aria-label="Main Navigation">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -86,7 +78,7 @@ export function Header({ phone, shopName }: HeaderProps) {
             Call {phone}
           </Button>
 
-          <Button href="/test-ride" variant="primary" size="sm">
+          <Button href={ROUTES.TEST_RIDE} variant="primary" size="sm">
             Book Test Ride
           </Button>
         </div>
@@ -160,7 +152,7 @@ export function Header({ phone, shopName }: HeaderProps) {
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-border-subtle bg-surface-white px-4 py-6 shadow-xl animate-in slide-in-from-top-2 duration-fast">
           <nav className="flex flex-col space-y-3">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -172,7 +164,7 @@ export function Header({ phone, shopName }: HeaderProps) {
             ))}
             <div className="pt-4 border-t border-border-subtle flex flex-col gap-2.5">
               <Button
-                href="/test-ride"
+                href={ROUTES.TEST_RIDE}
                 variant="primary"
                 fullWidth
                 onClick={() => setMobileMenuOpen(false)}
@@ -180,7 +172,7 @@ export function Header({ phone, shopName }: HeaderProps) {
                 Book Test Ride
               </Button>
               <Button
-                href="/exchange"
+                href={ROUTES.EXCHANGE}
                 variant="outline"
                 fullWidth
                 onClick={() => setMobileMenuOpen(false)}

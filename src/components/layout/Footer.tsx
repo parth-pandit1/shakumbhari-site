@@ -1,9 +1,9 @@
-import React from "react";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
+import { Container } from "@/components/ui";
+import { ROUTES } from "@/lib/constants";
 import type { Site } from "@/content/schemas";
 
-interface FooterProps {
+export interface FooterProps {
   site: Site;
 }
 
@@ -33,8 +33,8 @@ export function Footer({ site }: FooterProps) {
               </span>
             </div>
             <p className="text-sm text-zinc-400 max-w-md leading-relaxed mb-4">
-              {site.tagline.en} Specializing in electric two-wheelers, scheduled
-              maintenance, and spare parts in Ledi, Haryana.
+              {site.tagline.en} Specializing in electric two-wheelers, scheduled maintenance, and
+              spare parts in Ledi, Haryana.
             </p>
             <div className="flex flex-col gap-1 text-sm text-zinc-300">
               <div className="flex items-start gap-2">
@@ -66,10 +66,7 @@ export function Footer({ site }: FooterProps) {
                 >
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                <a
-                  href={`tel:${site.phone}`}
-                  className="hover:text-white transition-colors"
-                >
+                <a href={`tel:${site.phone}`} className="hover:text-white transition-colors">
                   +91 {site.phone}
                 </a>
               </div>
@@ -90,22 +87,22 @@ export function Footer({ site }: FooterProps) {
             </h3>
             <ul className="space-y-2.5 text-sm text-zinc-400">
               <li>
-                <Link href="/models" className="hover:text-white transition-colors">
+                <Link href={ROUTES.MODELS} className="hover:text-white transition-colors">
                   All EV Models
                 </Link>
               </li>
               <li>
-                <Link href="/compare" className="hover:text-white transition-colors">
+                <Link href={ROUTES.COMPARE} className="hover:text-white transition-colors">
                   Compare Models
                 </Link>
               </li>
               <li>
-                <Link href="/test-ride" className="hover:text-white transition-colors">
+                <Link href={ROUTES.TEST_RIDE} className="hover:text-white transition-colors">
                   Book a Test Ride
                 </Link>
               </li>
               <li>
-                <Link href="/exchange" className="hover:text-white transition-colors">
+                <Link href={ROUTES.EXCHANGE} className="hover:text-white transition-colors">
                   Old Vehicle Exchange
                 </Link>
               </li>
@@ -119,22 +116,22 @@ export function Footer({ site }: FooterProps) {
             </h3>
             <ul className="space-y-2.5 text-sm text-zinc-400">
               <li>
-                <Link href="/emi" className="hover:text-white transition-colors">
+                <Link href={ROUTES.EMI} className="hover:text-white transition-colors">
                   EMI Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/running-cost" className="hover:text-white transition-colors">
+                <Link href={ROUTES.RUNNING_COST} className="hover:text-white transition-colors">
                   Petrol vs EV Savings
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="hover:text-white transition-colors">
+                <Link href={ROUTES.SERVICE} className="hover:text-white transition-colors">
                   Service & Maintenance
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-white transition-colors">
+                <Link href={ROUTES.PRIVACY} className="hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
               </li>
@@ -148,10 +145,10 @@ export function Footer({ site }: FooterProps) {
             &copy; {currentYear} {site.shopName.en}. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-zinc-300 transition-colors">
+            <Link href={ROUTES.PRIVACY} className="hover:text-zinc-300 transition-colors">
               Privacy Notice
             </Link>
-            <Link href="/style-guide" className="hover:text-zinc-300 transition-colors">
+            <Link href={ROUTES.STYLE_GUIDE} className="hover:text-zinc-300 transition-colors">
               Design System
             </Link>
             {site.mapsLink && (

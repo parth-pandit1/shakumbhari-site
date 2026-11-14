@@ -2,31 +2,41 @@
   {
     "id": "faq-ev-basics",
     "question": { "en": "What is an electric scooter?" },
-    "answer": { "en": "An electric scooter is a two-wheeler powered by a rechargeable battery and an electric motor. It produces zero tailpipe emissions and runs quietly compared to petrol scooters." },
+    "answer": {
+      "en": "An electric scooter is a two-wheeler powered by a rechargeable battery and an electric motor. It produces zero tailpipe emissions and runs quietly compared to petrol scooters."
+    },
     "order": 1
   },
   {
     "id": "faq-charging",
     "question": { "en": "How do I charge an electric scooter?" },
-    "answer": { "en": "Most electric scooters come with a portable charger that plugs into any standard household socket. Simply connect the charger to the scooter and plug it in. Charging times vary by model." },
+    "answer": {
+      "en": "Most electric scooters come with a portable charger that plugs into any standard household socket. Simply connect the charger to the scooter and plug it in. Charging times vary by model."
+    },
     "order": 2
   },
   {
     "id": "faq-running-cost",
     "question": { "en": "What is the approximate running cost of an electric scooter?" },
-    "answer": { "en": "Electric scooters are significantly cheaper to run than petrol scooters. Electricity costs for a full charge are typically a fraction of what petrol would cost for the same distance. Exact costs depend on your local electricity rate and the scooter model." },
+    "answer": {
+      "en": "Electric scooters are significantly cheaper to run than petrol scooters. Electricity costs for a full charge are typically a fraction of what petrol would cost for the same distance. Exact costs depend on your local electricity rate and the scooter model."
+    },
     "order": 3
   },
   {
     "id": "faq-visit-showroom",
     "question": { "en": "Can I visit the showroom for a test ride?" },
-    "answer": { "en": "Yes, you are welcome to visit our showroom at Chhachhrauli Road, Ledi. Please call or WhatsApp us to confirm availability before your visit." },
+    "answer": {
+      "en": "Yes, you are welcome to visit our showroom at Chhachhrauli Road, Ledi. Please call or WhatsApp us to confirm availability before your visit."
+    },
     "order": 4
   },
   {
     "id": "faq-payment",
     "question": { "en": "What payment methods are accepted?" },
-    "answer": { "en": "Please contact us directly for information about accepted payment methods and any available options. Call or WhatsApp us for details." },
+    "answer": {
+      "en": "Please contact us directly for information about accepted payment methods and any available options. Call or WhatsApp us for details."
+    },
     "order": 5
   }
 ]

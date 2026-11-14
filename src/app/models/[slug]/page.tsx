@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { ModelDetailViewer } from "@/components/models/ModelDetailViewer";
+import { Container, Button, Badge } from "@/components/ui";
+import { ModelDetailViewer } from "@/components/features/models/ModelDetailViewer";
 import { getSite, getModels, getModelBySlug } from "@/lib/content";
 import { formatPrice, formatRange, formatTopSpeed } from "@/lib/format";
 import { buildWhatsAppLink, enquiryMessage, testRideMessage } from "@/lib/whatsapp";
+import { ROUTES, DISCLAIMERS, DEFAULT_EMI } from "@/lib/constants";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -64,35 +63,31 @@ export default async function ModelDetailPage({ params }: PageProps) {
       : null;
 
   const whatsappEnquiryUrl = buildWhatsAppLink(
-    site.whatsappNumber || site.phone,
+    site.whatsappNumber ?? site.phone,
     enquiryMessage(model.name.en)
   );
 
   const whatsappTestRideUrl = buildWhatsAppLink(
-    site.whatsappNumber || site.phone,
+    site.whatsappNumber ?? site.phone,
     testRideMessage(model.name.en)
   );
 
   return (
     <div className="bg-surface-white min-h-screen py-10 sm:py-14">
-      {productLd && (
-        <script type="application/ld+json">
-          {JSON.stringify(productLd)}
-        </script>
-      )}
+      {productLd && <script type="application/ld+json">{JSON.stringify(productLd)}</script>}
 
       <Container>
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex items-center gap-2 text-xs sm:text-sm text-text-muted">
             <li>
-              <Link href="/" className="hover:text-brand-primary">
+              <Link href={ROUTES.HOME} className="hover:text-brand-primary">
                 Home
               </Link>
             </li>
             <li>/</li>
             <li>
-              <Link href="/models" className="hover:text-brand-primary">
+              <Link href={ROUTES.MODELS} className="hover:text-brand-primary">
                 Models
               </Link>
             </li>
@@ -131,7 +126,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   {formatPrice(model.priceExShowroom)}
                 </div>
                 <p className="text-xs text-text-muted mt-1 leading-relaxed">
-                  Call or WhatsApp for on-road pricing, regional registration estimates, and current availability in Ledi.
+                  {DISCLAIMERS.EX_SHOWROOM_LONG}
                 </p>
               </div>
 
@@ -155,44 +150,25 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
             {/* CTAs */}
             <div className="space-y-3 pt-6 border-t border-border-subtle">
-              <Button
-                href={whatsappEnquiryUrl}
-                isExternal
-                variant="whatsapp"
-                size="lg"
-                fullWidth
-              >
-                <svg
-                  className="mr-2 h-5 w-5 fill-current"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
+              <Button href={whatsappEnquiryUrl} isExternal variant="whatsapp" size="lg" fullWidth>
+                <svg className="mr-2 h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.029-.481-1.611-.666-2.645-2.296-2.726-2.404-.08-.108-.646-.861-.646-1.642 0-.781.405-1.166.549-1.326.144-.16.315-.2.42-.2.106 0 .211.002.304.006.103.004.24-.039.375.285.144.348.49 1.197.533 1.285.043.087.072.19.014.305-.058.114-.087.186-.173.287-.087.1-.183.224-.261.301-.087.087-.178.182-.077.355.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.102-.115.434-.506.549-.68.115-.173.231-.144.39-.086s1.012.477 1.185.564.289.13.332.203c.043.072.043.419-.101.824z" />
                 </svg>
                 Enquire for {model.name.en}
               </Button>
 
               <div className="grid grid-cols-2 gap-3">
-                <Button
-                  href={whatsappTestRideUrl}
-                  isExternal
-                  variant="outline"
-                  size="md"
-                >
+                <Button href={whatsappTestRideUrl} isExternal variant="outline" size="md">
                   Book Test Ride
                 </Button>
-                <Button
-                  href={`/compare?model1=${model.slug}`}
-                  variant="outline"
-                  size="md"
-                >
+                <Button href={`${ROUTES.COMPARE}?model1=${model.slug}`} variant="outline" size="md">
                   Compare Model
                 </Button>
               </div>
 
               <div className="text-center pt-2">
                 <Link
-                  href={`/emi?price=${model.priceExShowroom || 80000}`}
+                  href={`${ROUTES.EMI}?price=${model.priceExShowroom ?? DEFAULT_EMI.PRICE}`}
                   className="text-xs font-semibold text-brand-primary hover:underline"
                 >
                   Calculate EMI for this scooter &rarr;
@@ -215,17 +191,13 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   <th scope="row" className="py-3.5 px-6 font-semibold text-text-heading w-1/3">
                     Model Name
                   </th>
-                  <td className="py-3.5 px-6 text-text-body font-medium">
-                    {model.name.en}
-                  </td>
+                  <td className="py-3.5 px-6 text-text-body font-medium">{model.name.en}</td>
                 </tr>
                 <tr className="border-b border-border-subtle">
                   <th scope="row" className="py-3.5 px-6 font-semibold text-text-heading">
                     Vehicle Type
                   </th>
-                  <td className="py-3.5 px-6 text-text-body">
-                    {model.type}
-                  </td>
+                  <td className="py-3.5 px-6 text-text-body">{model.type}</td>
                 </tr>
                 <tr className="border-b border-border-subtle bg-surface-grey/50">
                   <th scope="row" className="py-3.5 px-6 font-semibold text-text-heading">
@@ -279,9 +251,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
             </table>
           </div>
 
-          <p className="mt-4 text-xs text-text-muted">
-            *Specifications and ranges are based on manufacturer claimed figures under standard testing conditions. Real-world performance depends on riding conditions, load, and battery maintenance.
-          </p>
+          <p className="mt-4 text-xs text-text-muted">*{DISCLAIMERS.SPECS}</p>
         </div>
       </Container>
     </div>

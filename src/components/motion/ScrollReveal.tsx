@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-interface ScrollRevealProps {
-  children: React.ReactNode;
+export interface ScrollRevealProps {
+  children: ReactNode;
   delay?: number;
   className?: string;
   direction?: "up" | "down" | "left" | "right" | "none";

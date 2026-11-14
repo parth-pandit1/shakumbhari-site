@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { DEFAULT_EMI, DISCLAIMERS } from "@/lib/constants";
 
 interface EmiCalculatorProps {
   phone: string;
@@ -16,19 +17,20 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
     const pParam = searchParams.get("price");
     if (pParam) {
       const parsed = Number(pParam);
-      if (!isNaN(parsed) && parsed >= 30000 && parsed <= 200000) {
+      if (!isNaN(parsed) && parsed >= DEFAULT_EMI.MIN_PRICE && parsed <= 200000) {
         return parsed;
       }
     }
-    return 80000;
+    return DEFAULT_EMI.PRICE;
   }, [searchParams]);
 
   const [price, setPrice] = useState(initialPrice);
-  const [downPayment, setDownPayment] = useState(() => Math.round(initialPrice * 0.25));
-  const [interestRate, setInterestRate] = useState(11.5);
-  const [tenureMonths, setTenureMonths] = useState(24);
+  const [downPayment, setDownPayment] = useState(() =>
+    Math.round(initialPrice * DEFAULT_EMI.DOWN_PAYMENT_RATIO)
+  );
+  const [interestRate, setInterestRate] = useState<number>(DEFAULT_EMI.INTEREST_RATE);
+  const [tenureMonths, setTenureMonths] = useState<number>(DEFAULT_EMI.TENURE_MONTHS);
 
-  // Calculations using Reducing Balance Formula
   const calculation = useMemo(() => {
     const principal = Math.max(0, price - downPayment);
     if (principal === 0) {
@@ -67,9 +69,7 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      {/* Inputs Column */}
       <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm space-y-6">
-        {/* Vehicle Price */}
         <div>
           <div className="flex justify-between items-center mb-2">
             <label htmlFor="price-range" className="text-sm font-bold text-text-heading">
@@ -82,9 +82,9 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
           <input
             id="price-range"
             type="range"
-            min={40000}
-            max={150000}
-            step={2000}
+            min={DEFAULT_EMI.MIN_PRICE}
+            max={DEFAULT_EMI.MAX_PRICE}
+            step={DEFAULT_EMI.PRICE_STEP}
             value={price}
             onChange={(e) => {
               const val = Number(e.target.value);
@@ -96,12 +96,11 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
             className="w-full accent-brand-primary cursor-pointer"
           />
           <div className="flex justify-between text-[11px] text-text-muted mt-1">
-            <span>₹40,000</span>
-            <span>₹1,50,000</span>
+            <span>₹{DEFAULT_EMI.MIN_PRICE.toLocaleString("en-IN")}</span>
+            <span>₹{DEFAULT_EMI.MAX_PRICE.toLocaleString("en-IN")}</span>
           </div>
         </div>
 
-        {/* Down Payment */}
         <div>
           <div className="flex justify-between items-center mb-2">
             <label htmlFor="downpayment-range" className="text-sm font-bold text-text-heading">
@@ -114,26 +113,23 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
           <input
             id="downpayment-range"
             type="range"
-            min={5000}
+            min={DEFAULT_EMI.MIN_DOWN_PAYMENT}
             max={Math.min(100000, price - 10000)}
-            step={1000}
+            step={DEFAULT_EMI.DOWN_PAYMENT_STEP}
             value={downPayment}
             onChange={(e) => setDownPayment(Number(e.target.value))}
             className="w-full accent-brand-primary cursor-pointer"
           />
           <div className="flex justify-between text-[11px] text-text-muted mt-1">
-            <span>₹5,000</span>
+            <span>₹{DEFAULT_EMI.MIN_DOWN_PAYMENT.toLocaleString("en-IN")}</span>
             <span>₹{Math.min(100000, price - 10000).toLocaleString("en-IN")}</span>
           </div>
         </div>
 
-        {/* Tenure selection */}
         <div>
-          <label className="block text-sm font-bold text-text-heading mb-2">
-            Loan Tenure
-          </label>
+          <label className="block text-sm font-bold text-text-heading mb-2">Loan Tenure</label>
           <div className="grid grid-cols-4 gap-2">
-            {[12, 24, 36, 48].map((months) => (
+            {DEFAULT_EMI.TENURES.map((months) => (
               <button
                 key={months}
                 type="button"
@@ -150,34 +146,30 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
           </div>
         </div>
 
-        {/* Interest Rate */}
         <div>
           <div className="flex justify-between items-center mb-2">
             <label htmlFor="rate-range" className="text-sm font-bold text-text-heading">
               Estimated Annual Interest Rate
             </label>
-            <span className="text-base font-bold text-text-heading">
-              {interestRate}% p.a.
-            </span>
+            <span className="text-base font-bold text-text-heading">{interestRate}% p.a.</span>
           </div>
           <input
             id="rate-range"
             type="range"
-            min={8}
-            max={18}
-            step={0.5}
+            min={DEFAULT_EMI.MIN_RATE}
+            max={DEFAULT_EMI.MAX_RATE}
+            step={DEFAULT_EMI.RATE_STEP}
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value))}
             className="w-full accent-brand-primary cursor-pointer"
           />
           <div className="flex justify-between text-[11px] text-text-muted mt-1">
-            <span>8%</span>
-            <span>18%</span>
+            <span>{DEFAULT_EMI.MIN_RATE}%</span>
+            <span>{DEFAULT_EMI.MAX_RATE}%</span>
           </div>
         </div>
       </div>
 
-      {/* Results Column */}
       <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm flex flex-col justify-between">
         <div>
           <div className="inline-block px-2.5 py-1 rounded bg-brand-tint text-brand-primary text-xs font-bold uppercase tracking-wider mb-4">
@@ -186,15 +178,10 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
 
           <div className="text-4xl sm:text-5xl font-extrabold text-text-heading tracking-tight mb-1">
             ₹{calculation.monthlyEmi.toLocaleString("en-IN")}
-            <span className="text-sm sm:text-base font-semibold text-text-muted ml-1">
-              /month
-            </span>
+            <span className="text-sm sm:text-base font-semibold text-text-muted ml-1">/month</span>
           </div>
-          <p className="text-xs text-text-muted mb-6">
-            For {tenureMonths} monthly instalments
-          </p>
+          <p className="text-xs text-text-muted mb-6">For {tenureMonths} monthly instalments</p>
 
-          {/* Breakdown summary */}
           <div className="space-y-3 py-4 border-y border-border-subtle text-sm">
             <div className="flex justify-between text-text-body">
               <span>Loan Principal:</span>
@@ -216,20 +203,13 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
             </div>
           </div>
 
-          {/* Mandatory Disclaimer */}
           <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 mt-6 text-xs text-amber-900 leading-relaxed">
-            <strong>Disclaimer:</strong> Indicative only; actual terms depend on the financier. Loan approval, interest rates, down payment, and processing fees are determined by participating financial institutions.
+            <strong>Disclaimer:</strong> {DISCLAIMERS.FINANCE}
           </div>
         </div>
 
         <div className="mt-8 pt-4">
-          <Button
-            href={whatsappUrl}
-            isExternal
-            variant="whatsapp"
-            size="lg"
-            fullWidth
-          >
+          <Button href={whatsappUrl} isExternal variant="whatsapp" size="lg" fullWidth>
             Enquire About Loan Terms on WhatsApp
           </Button>
         </div>

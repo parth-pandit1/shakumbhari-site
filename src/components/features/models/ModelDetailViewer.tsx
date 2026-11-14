@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import type { Model } from "@/content/schemas";
 
@@ -11,20 +11,16 @@ interface ModelDetailViewerProps {
 export function ModelDetailViewer({ model }: ModelDetailViewerProps) {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
   const [selectedColour, setSelectedColour] = useState(
-    model.colours.length > 0 ? model.colours[0] : ""
+    model.colours.length > 0 ? (model.colours[0] ?? "") : ""
   );
 
-  const photos =
-    model.photos.length > 0
-      ? model.photos
-      : ["/images/models/sample-model-a.webp"];
+  const photos = model.photos.length > 0 ? model.photos : ["/images/models/sample-model-a.webp"];
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Main Image Display */}
       <div className="relative aspect-[16/10] w-full rounded-2xl bg-surface-grey border border-border-subtle overflow-hidden shadow-sm">
         <Image
-          src={photos[selectedPhotoIndex] || photos[0]}
+          src={photos[selectedPhotoIndex] ?? photos[0] ?? "/images/models/sample-model-a.webp"}
           alt={`${model.name.en} - ${selectedColour || "scooter"}`}
           fill
           priority
@@ -49,7 +45,6 @@ export function ModelDetailViewer({ model }: ModelDetailViewerProps) {
         )}
       </div>
 
-      {/* Thumbnails (if multiple photos exist) */}
       {photos.length > 1 && (
         <div className="flex items-center gap-3 overflow-x-auto pb-1">
           {photos.map((p, idx) => (
@@ -70,11 +65,11 @@ export function ModelDetailViewer({ model }: ModelDetailViewerProps) {
         </div>
       )}
 
-      {/* Colour Switcher */}
       {model.colours.length > 0 && (
         <div className="p-4 rounded-xl bg-surface-white border border-border-subtle mt-2">
           <label className="block text-xs font-bold text-text-heading uppercase tracking-wider mb-2">
-            Available Colours: <span className="text-brand-primary font-semibold">{selectedColour}</span>
+            Available Colours:{" "}
+            <span className="text-brand-primary font-semibold">{selectedColour}</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {model.colours.map((col) => {

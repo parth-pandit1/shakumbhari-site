@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { ModelsFilterGrid } from "@/components/models/ModelsFilterGrid";
+import { Container } from "@/components/ui";
+import { ModelsFilterGrid } from "@/components/features/models/ModelsFilterGrid";
 import { getSite, getModels } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -24,7 +24,9 @@ export default function ModelsPage() {
             Electric Scooter Models
           </h1>
           <p className="mt-2 text-base text-text-muted max-w-2xl">
-            Compare prices, claimed battery range, and key specifications. Prices shown are ex-showroom indicative figures; please call or message us on WhatsApp for exact on-road quotations.
+            Compare prices, claimed battery range, and key specifications. Prices shown are
+            ex-showroom indicative figures; please call or message us on WhatsApp for exact on-road
+            quotations.
           </p>
         </div>
 

@@ -1,18 +1,16 @@
 "use client";
 
-import React, { useRef } from "react";
-import { ModelCard } from "@/components/common/ModelCard";
+import { useRef } from "react";
+import type { KeyboardEvent } from "react";
+import { ModelCard } from "@/components/features/models/ModelCard";
 import type { Model } from "@/content/schemas";
 
-interface FeaturedModelsCarouselProps {
+export interface FeaturedModelsCarouselProps {
   models: Model[];
   phone: string;
 }
 
-export function FeaturedModelsCarousel({
-  models,
-  phone,
-}: FeaturedModelsCarouselProps) {
+export function FeaturedModelsCarousel({ models, phone }: FeaturedModelsCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -25,7 +23,7 @@ export function FeaturedModelsCarousel({
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
       e.preventDefault();
       scroll("left");
@@ -36,7 +34,12 @@ export function FeaturedModelsCarousel({
   };
 
   return (
-    <div className="relative" onKeyDown={handleKeyDown} tabIndex={0} aria-label="Featured Models Carousel">
+    <div
+      className="relative"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      aria-label="Featured Models Carousel"
+    >
       {/* Scroll controls */}
       <div className="flex items-center justify-between mb-6">
         <div>

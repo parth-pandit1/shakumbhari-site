@@ -1,7 +1,7 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { CompareView } from "@/components/compare/CompareView";
+import { Container } from "@/components/ui";
+import { CompareView } from "@/components/features/compare/CompareView";
 import { getSite, getModels } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -25,7 +25,8 @@ export default function ComparePage() {
             Compare Scooter Models
           </h1>
           <p className="mt-2 text-base text-text-muted max-w-2xl">
-            Select up to three electric scooters to compare battery capacities, claimed ranges, charging times, and estimated ex-showroom pricing side by side.
+            Select up to three electric scooters to compare battery capacities, claimed ranges,
+            charging times, and estimated ex-showroom pricing side by side.
           </p>
         </div>
 

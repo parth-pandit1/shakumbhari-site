@@ -1,18 +1,14 @@
 "use client";
 
-import React from "react";
 import { buildWhatsAppLink, enquiryMessage } from "@/lib/whatsapp";
 
-interface MobileStickyBarProps {
+export interface MobileStickyBarProps {
   phone: string;
   whatsappNumber: string | null;
 }
 
-export function MobileStickyBar({
-  phone,
-  whatsappNumber,
-}: MobileStickyBarProps) {
-  const activeWaNumber = whatsappNumber || phone;
+export function MobileStickyBar({ phone, whatsappNumber }: MobileStickyBarProps) {
+  const activeWaNumber = whatsappNumber ?? phone;
   const whatsappUrl = buildWhatsAppLink(activeWaNumber, enquiryMessage());
 
   return (
@@ -48,11 +44,7 @@ export function MobileStickyBar({
           rel="noopener noreferrer"
           className="flex-1 inline-flex items-center justify-center gap-1.5 h-12 rounded-xl bg-whatsapp text-whatsapp-text font-bold text-sm shadow-xs active:scale-[0.98] transition-transform"
         >
-          <svg
-            className="h-5 w-5 fill-current"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
+          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.029-.481-1.611-.666-2.645-2.296-2.726-2.404-.08-.108-.646-.861-.646-1.642 0-.781.405-1.166.549-1.326.144-.16.315-.2.42-.2.106 0 .211.002.304.006.103.004.24-.039.375.285.144.348.49 1.197.533 1.285.043.087.072.19.014.305-.058.114-.087.186-.173.287-.087.1-.183.224-.261.301-.087.087-.178.182-.077.355.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.102-.115.434-.506.549-.68.115-.173.231-.144.39-.086s1.012.477 1.185.564.289.13.332.203c.043.072.043.419-.101.824z" />
           </svg>
           <span>WhatsApp</span>

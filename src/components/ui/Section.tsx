@@ -1,7 +1,7 @@
-import React from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-interface SectionProps extends React.HTMLAttributes<HTMLElement> {
-  children: React.ReactNode;
+export interface SectionProps extends HTMLAttributes<HTMLElement> {
+  children: ReactNode;
   className?: string;
   variant?: "white" | "grey" | "dark" | "tint";
   id?: string;

@@ -1,6 +1,5 @@
-import React from "react";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Container, Button } from "@/components/ui";
+import { ROUTES } from "@/lib/constants";
 
 export default function NotFound() {
   return (
@@ -15,17 +14,18 @@ export default function NotFound() {
         </h1>
 
         <p className="text-base text-text-muted mb-8 max-w-md mx-auto leading-relaxed">
-          The link you followed may be broken or the page may have been moved. Return to the showroom home or explore our scooter line-up.
+          The link you followed may be broken or the page may have been moved. Return to the
+          showroom home or explore our scooter line-up.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <Button href="/" variant="primary" size="md">
+          <Button href={ROUTES.HOME} variant="primary" size="md">
             Return to Home
           </Button>
-          <Button href="/models" variant="outline" size="md">
+          <Button href={ROUTES.MODELS} variant="outline" size="md">
             View All Models
           </Button>
-          <Button href="/test-ride" variant="ghost" size="md">
+          <Button href={ROUTES.TEST_RIDE} variant="ghost" size="md">
             Book Test Ride &rarr;
           </Button>
         </div>

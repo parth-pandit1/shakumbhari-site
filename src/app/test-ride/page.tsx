@@ -1,7 +1,6 @@
-import React from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { TestRideForm } from "@/components/forms/TestRideForm";
+import { Container } from "@/components/ui";
+import { TestRideForm } from "@/components/features/forms/TestRideForm";
 import { getSite, getModels } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -25,7 +24,8 @@ export default function TestRidePage() {
             Book an EV Scooter Test Ride
           </h1>
           <p className="mt-2 text-base text-text-muted">
-            Experience smooth electric acceleration and quiet riding firsthand. Pick your model and preferred date to book directly on WhatsApp.
+            Experience smooth electric acceleration and quiet riding firsthand. Pick your model and
+            preferred date to book directly on WhatsApp.
           </p>
         </div>
 

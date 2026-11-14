@@ -1,7 +1,6 @@
-import React from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { RunningCostEstimator } from "@/components/tools/RunningCostEstimator";
+import { Container } from "@/components/ui";
+import { RunningCostEstimator } from "@/components/features/running-cost/RunningCostEstimator";
 import { getSite } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -24,7 +23,8 @@ export default function RunningCostPage() {
             Petrol vs EV Running Cost Estimator
           </h1>
           <p className="mt-2 text-base text-text-muted max-w-2xl">
-            See how much you could save on fuel by switching to an electric two-wheeler. All assumptions are fully editable to reflect your real daily commute.
+            See how much you could save on fuel by switching to an electric two-wheeler. All
+            assumptions are fully editable to reflect your real daily commute.
           </p>
         </div>
 

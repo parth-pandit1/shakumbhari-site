@@ -1,10 +1,9 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { Badge, Button } from "@/components/ui";
 import { formatPrice, formatRange, formatTopSpeed } from "@/lib/format";
 import { buildWhatsAppLink, enquiryMessage } from "@/lib/whatsapp";
+import { DISCLAIMERS } from "@/lib/constants";
 import type { Model } from "@/content/schemas";
 
 interface ModelCardProps {
@@ -13,15 +12,11 @@ interface ModelCardProps {
 }
 
 export function ModelCard({ model, phone }: ModelCardProps) {
-  const photo = model.photos[0] || "/images/models/sample-model-a.webp";
-  const whatsappUrl = buildWhatsAppLink(
-    phone,
-    enquiryMessage(model.name.en)
-  );
+  const photo = model.photos[0] ?? "/images/models/sample-model-a.webp";
+  const whatsappUrl = buildWhatsAppLink(phone, enquiryMessage(model.name.en));
 
   return (
     <div className="flex flex-col h-full rounded-2xl border border-border-subtle bg-surface-white overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-normal group">
-      {/* Image container */}
       <div className="relative aspect-[16/10] w-full bg-surface-grey overflow-hidden">
         <Image
           src={photo}
@@ -32,7 +27,6 @@ export function ModelCard({ model, phone }: ModelCardProps) {
           loading="lazy"
         />
 
-        {/* Badges overlay */}
         <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
           {model.isSample && (
             <Badge variant="warning" size="sm">
@@ -53,14 +47,12 @@ export function ModelCard({ model, phone }: ModelCardProps) {
         )}
       </div>
 
-      {/* Content body */}
       <div className="flex flex-col flex-1 p-5 sm:p-6">
         <div className="flex-1">
           <h3 className="text-lg sm:text-xl font-bold text-text-heading group-hover:text-brand-primary transition-colors">
             <Link href={`/models/${model.slug}`}>{model.name.en}</Link>
           </h3>
 
-          {/* Quick Specs Grid */}
           <div className="grid grid-cols-2 gap-2 mt-4 py-3 border-y border-border-subtle text-xs text-text-muted">
             {model.claimedRangeKm !== null && (
               <div className="flex items-center gap-1.5">
@@ -117,35 +109,20 @@ export function ModelCard({ model, phone }: ModelCardProps) {
             )}
           </div>
 
-          {/* Price display */}
           <div className="mt-4">
             <div className="text-xl sm:text-2xl font-bold text-text-heading">
               {formatPrice(model.priceExShowroom)}
             </div>
-            <p className="text-[11px] text-text-muted mt-0.5">
-              Ex-showroom, call for latest price
-            </p>
+            <p className="text-[11px] text-text-muted mt-0.5">{DISCLAIMERS.EX_SHOWROOM}</p>
           </div>
         </div>
 
-        {/* Action buttons */}
         <div className="grid grid-cols-2 gap-2.5 mt-6 pt-4 border-t border-border-subtle">
-          <Button
-            href={`/models/${model.slug}`}
-            variant="outline"
-            size="sm"
-            fullWidth
-          >
+          <Button href={`/models/${model.slug}`} variant="outline" size="sm" fullWidth>
             Specs
           </Button>
 
-          <Button
-            href={whatsappUrl}
-            isExternal
-            variant="whatsapp"
-            size="sm"
-            fullWidth
-          >
+          <Button href={whatsappUrl} isExternal variant="whatsapp" size="sm" fullWidth>
             Enquire
           </Button>
         </div>

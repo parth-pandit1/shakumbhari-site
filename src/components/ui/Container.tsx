@@ -1,17 +1,12 @@
-import React from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   className?: string;
   size?: "sm" | "md" | "lg" | "xl" | "full";
 }
 
-export function Container({
-  children,
-  className = "",
-  size = "lg",
-  ...props
-}: ContainerProps) {
+export function Container({ children, className = "", size = "lg", ...props }: ContainerProps) {
   const sizeClasses = {
     sm: "max-w-3xl",
     md: "max-w-5xl",
@@ -21,10 +16,7 @@ export function Container({
   }[size];
 
   return (
-    <div
-      className={`mx-auto w-full px-4 sm:px-6 lg:px-8 ${sizeClasses} ${className}`}
-      {...props}
-    >
+    <div className={`mx-auto w-full px-4 sm:px-6 lg:px-8 ${sizeClasses} ${className}`} {...props}>
       {children}
     </div>
   );

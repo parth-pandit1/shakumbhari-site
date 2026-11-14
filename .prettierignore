@@ -1,0 +1,7 @@
+node_modules
+.next
+out
+package-lock.json
+AGENTS.md
+docs/PLAN-CHANGES.md
+content/CONFIRM.md

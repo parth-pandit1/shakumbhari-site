@@ -23,11 +23,7 @@ function channelLuminance(channel) {
 }
 
 function relativeLuminance([r, g, b]) {
-  return (
-    0.2126 * channelLuminance(r) +
-    0.7152 * channelLuminance(g) +
-    0.0722 * channelLuminance(b)
-  );
+  return 0.2126 * channelLuminance(r) + 0.7152 * channelLuminance(g) + 0.0722 * channelLuminance(b);
 }
 
 export function getContrastRatio(fgHex, bgHex) {
@@ -203,9 +199,15 @@ export const colorPairs = [
 ];
 
 function run() {
-  console.log("==========================================================================================");
-  console.log("                          DESIGN SYSTEM WCAG CONTRAST AUDIT                               ");
-  console.log("==========================================================================================");
+  console.log(
+    "=========================================================================================="
+  );
+  console.log(
+    "                          DESIGN SYSTEM WCAG CONTRAST AUDIT                               "
+  );
+  console.log(
+    "=========================================================================================="
+  );
   console.log(
     "| Role / Intended Usage                  | FG      | BG      | Ratio   | Min Req | Result |"
   );
@@ -231,15 +233,17 @@ function run() {
     const minCol = `${minRequired.toFixed(1)}:1`.padEnd(7);
     const resultCol = passed ? "PASS" : "FAIL";
 
-    console.log(
-      `| ${roleCol} | ${fgCol} | ${bgCol} | ${ratioCol} | ${minCol} | ${resultCol}   |`
-    );
+    console.log(`| ${roleCol} | ${fgCol} | ${bgCol} | ${ratioCol} | ${minCol} | ${resultCol}   |`);
   }
 
-  console.log("==========================================================================================");
+  console.log(
+    "=========================================================================================="
+  );
 
   if (failedCount > 0) {
-    console.error(`\n❌ Contrast audit FAILED: ${failedCount} pair(s) did not meet WCAG AA requirements.`);
+    console.error(
+      `\n❌ Contrast audit FAILED: ${failedCount} pair(s) did not meet WCAG AA requirements.`
+    );
     process.exit(1);
   } else {
     console.log(`\n✅ All ${colorPairs.length} colour pairs PASSED WCAG AA contrast standards.`);

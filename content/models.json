@@ -35,9 +35,7 @@
     "chargingTime": "4-5 hours (sample)",
     "warranty": null,
     "colours": ["White", "Grey"],
-    "highlights": [
-      { "en": "Sample highlight one [PLACEHOLDER]" }
-    ],
+    "highlights": [{ "en": "Sample highlight one [PLACEHOLDER]" }],
     "photos": ["/images/models/sample-model-b.webp"],
     "isSample": true,
     "featured": true
@@ -56,9 +54,7 @@
     "chargingTime": "5-6 hours (sample)",
     "warranty": null,
     "colours": ["Black", "Red"],
-    "highlights": [
-      { "en": "Sample highlight [PLACEHOLDER]" }
-    ],
+    "highlights": [{ "en": "Sample highlight [PLACEHOLDER]" }],
     "photos": ["/images/models/sample-model-c.webp"],
     "isSample": true,
     "featured": false
@@ -77,9 +73,7 @@
     "chargingTime": "6-8 hours (sample)",
     "warranty": null,
     "colours": ["Blue", "Green"],
-    "highlights": [
-      { "en": "Sample highlight [PLACEHOLDER]" }
-    ],
+    "highlights": [{ "en": "Sample highlight [PLACEHOLDER]" }],
     "photos": ["/images/models/sample-model-d.webp"],
     "isSample": true,
     "featured": false
@@ -98,9 +92,7 @@
     "chargingTime": "7-8 hours (sample)",
     "warranty": null,
     "colours": ["Black"],
-    "highlights": [
-      { "en": "Sample highlight [PLACEHOLDER]" }
-    ],
+    "highlights": [{ "en": "Sample highlight [PLACEHOLDER]" }],
     "photos": ["/images/models/sample-model-e.webp"],
     "isSample": true,
     "featured": false

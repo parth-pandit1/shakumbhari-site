@@ -15,9 +15,7 @@ const PHONE_REGEX = /^\d{10}$/;
  */
 export function buildWhatsAppLink(phone: string, message: string): string {
   if (!PHONE_REGEX.test(phone)) {
-    throw new Error(
-      `Invalid phone number "${phone}": must be exactly 10 digits`,
-    );
+    throw new Error(`Invalid phone number "${phone}": must be exactly 10 digits`);
   }
   const encoded = encodeURIComponent(message);
   return `https://wa.me/91${phone}?text=${encoded}`;

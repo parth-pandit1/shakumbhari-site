@@ -34,10 +34,7 @@ import type {
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
-function readContentFile<T>(
-  filename: string,
-  schema: { parse: (data: unknown) => T },
-): T {
+function readContentFile<T>(filename: string, schema: { parse: (data: unknown) => T }): T {
   const filePath = path.join(CONTENT_DIR, filename);
   const raw = fs.readFileSync(filePath, "utf-8");
   const data: unknown = JSON.parse(raw);
@@ -45,7 +42,7 @@ function readContentFile<T>(
     return schema.parse(data);
   } catch (error) {
     throw new Error(
-      `Content validation failed for ${filename}: ${error instanceof Error ? error.message : String(error)}`,
+      `Content validation failed for ${filename}: ${error instanceof Error ? error.message : String(error)}`
     );
   }
 }
@@ -54,10 +51,7 @@ function readContentFile<T>(
  * Extract text for a given locale from a LocalizedText object.
  * Falls back to "en" if the requested locale is missing.
  */
-export function getLocalized(
-  text: LocalizedText,
-  locale: "en" | "hi" = "en",
-): string {
+export function getLocalized(text: LocalizedText, locale: "en" | "hi" = "en"): string {
   if (locale === "hi" && text.hi) {
     return text.hi;
   }
@@ -90,16 +84,12 @@ export function getModelBySlug(slug: string): Model | undefined {
 
 /** Only active offers */
 export function getOffers(): Offer[] {
-  return readContentFile("offers.json", OffersFileSchema).filter(
-    (o) => o.active,
-  );
+  return readContentFile("offers.json", OffersFileSchema).filter((o) => o.active);
 }
 
 /** Only customers with consent: true (Amendment 5 / Rule 5) */
 export function getCustomers(): Customer[] {
-  return readContentFile("customers.json", CustomersFileSchema).filter(
-    (c) => c.consent,
-  );
+  return readContentFile("customers.json", CustomersFileSchema).filter((c) => c.consent);
 }
 
 export function getFaqs(): Faq[] {
@@ -109,7 +99,5 @@ export function getFaqs(): Faq[] {
 
 /** Only confirmed services */
 export function getServices(): Service[] {
-  return readContentFile("services.json", ServicesFileSchema).filter(
-    (s) => s.confirmed,
-  );
+  return readContentFile("services.json", ServicesFileSchema).filter((s) => s.confirmed);
 }

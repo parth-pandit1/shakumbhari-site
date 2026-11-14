@@ -1,9 +1,9 @@
-import React from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: "brand" | "neutral" | "success" | "warning" | "danger" | "dark";
   size?: "sm" | "md";
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function Badge({

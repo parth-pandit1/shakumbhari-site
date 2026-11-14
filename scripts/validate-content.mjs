@@ -91,24 +91,16 @@ for (const target of VALIDATION_TARGETS) {
 }
 
 // Print results table
-console.log(
-  "Status | File             | Content Type            | Details"
-);
-console.log(
-  "-------+------------------+-------------------------+-------------------"
-);
+console.log("Status | File             | Content Type            | Details");
+console.log("-------+------------------+-------------------------+-------------------");
 
 for (const r of results) {
   const statusStr =
-    r.status === "PASS"
-      ? "\x1b[32mPASS\x1b[0m  "
-      : `\x1b[31m${r.status.padEnd(6)}\x1b[0m`;
+    r.status === "PASS" ? "\x1b[32mPASS\x1b[0m  " : `\x1b[31m${r.status.padEnd(6)}\x1b[0m`;
   const fileStr = r.file.padEnd(16);
   const nameStr = r.name.padEnd(23);
   const detailStr =
-    r.status === "PASS"
-      ? `${r.itemCount} item(s) valid`
-      : `${r.errors.length} error(s)`;
+    r.status === "PASS" ? `${r.itemCount} item(s) valid` : `${r.errors.length} error(s)`;
 
   console.log(`${statusStr} | ${fileStr} | ${nameStr} | ${detailStr}`);
 

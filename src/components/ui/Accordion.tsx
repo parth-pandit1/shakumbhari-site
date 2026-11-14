@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+import type { ReactNode } from "react";
 
 export interface AccordionItemData {
   id: string;
   title: string;
-  content: string | React.ReactNode;
+  content: string | ReactNode;
 }
 
-interface AccordionProps {
+export interface AccordionProps {
   items: AccordionItemData[];
   defaultOpenIndex?: number;
   className?: string;

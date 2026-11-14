@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef, type KeyboardEvent } from "react";
 
 export interface TabItem {
   id: string;
@@ -8,7 +8,7 @@ export interface TabItem {
   badge?: string | number;
 }
 
-interface TabsProps {
+export interface TabsProps {
   tabs: TabItem[];
   activeTab: string;
   onChange: (tabId: string) => void;
@@ -18,7 +18,7 @@ interface TabsProps {
 export function Tabs({ tabs, activeTab, onChange, className = "" }: TabsProps) {
   const tabListRef = useRef<HTMLDivElement>(null);
 
-  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+  const handleKeyDown = (e: KeyboardEvent, index: number) => {
     if (e.key === "ArrowRight") {
       e.preventDefault();
       const nextIndex = (index + 1) % tabs.length;
@@ -63,9 +63,7 @@ export function Tabs({ tabs, activeTab, onChange, className = "" }: TabsProps) {
             {tab.badge !== undefined && (
               <span
                 className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
-                  isActive
-                    ? "bg-brand-tint text-brand-primary"
-                    : "bg-border-subtle text-text-muted"
+                  isActive ? "bg-brand-tint text-brand-primary" : "bg-border-subtle text-text-muted"
                 }`}
               >
                 {tab.badge}

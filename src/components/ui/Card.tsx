@@ -1,7 +1,7 @@
-import React from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   variant?: "white" | "grey" | "dark" | "outline";
   hoverEffect?: boolean;
   className?: string;
@@ -39,7 +39,7 @@ export function CardHeader({
   children,
   className = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return <div className={`p-5 sm:p-6 pb-2 sm:pb-3 ${className}`}>{children}</div>;
@@ -49,7 +49,7 @@ export function CardBody({
   children,
   className = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return <div className={`p-5 sm:p-6 ${className}`}>{children}</div>;
@@ -59,13 +59,11 @@ export function CardFooter({
   children,
   className = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return (
-    <div
-      className={`p-5 sm:p-6 pt-3 sm:pt-4 border-t border-border-subtle ${className}`}
-    >
+    <div className={`p-5 sm:p-6 pt-3 sm:pt-4 border-t border-border-subtle ${className}`}>
       {children}
     </div>
   );

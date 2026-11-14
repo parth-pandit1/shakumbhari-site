@@ -23,16 +23,18 @@ export type LocalizedText = z.infer<typeof LocalizedTextSchema>;
 const PhoneSchema = z.string().regex(/^\d{10}$/, "Must be exactly 10 digits");
 
 /** URL that starts with https:// */
-const HttpsUrlSchema = z.string().url().refine(
-  (u) => u.startsWith("https://"),
-  { message: "URL must start with https://" },
-);
+const HttpsUrlSchema = z
+  .string()
+  .url()
+  .refine((u) => u.startsWith("https://"), { message: "URL must start with https://" });
 
 /** Google Maps embed src */
-const MapsEmbedSrcSchema = z.string().url().refine(
-  (u) => u.startsWith("https://www.google.com/maps/embed"),
-  { message: "Must be a Google Maps embed URL" },
-);
+const MapsEmbedSrcSchema = z
+  .string()
+  .url()
+  .refine((u) => u.startsWith("https://www.google.com/maps/embed"), {
+    message: "Must be a Google Maps embed URL",
+  });
 
 // ─── Site ──────────────────────────────────────────────────
 
@@ -42,7 +44,10 @@ export const AddressSchema = z.object({
   city: z.string().nullable(),
   district: z.string().nullable(),
   state: z.string().nullable(),
-  pincode: z.string().regex(/^\d{6}$/).nullable(),
+  pincode: z
+    .string()
+    .regex(/^\d{6}$/)
+    .nullable(),
 });
 export type Address = z.infer<typeof AddressSchema>;
 

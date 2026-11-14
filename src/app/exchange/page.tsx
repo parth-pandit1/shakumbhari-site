@@ -1,7 +1,6 @@
-import React from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { ExchangeForm } from "@/components/forms/ExchangeForm";
+import { Container } from "@/components/ui";
+import { ExchangeForm } from "@/components/features/forms/ExchangeForm";
 import { getSite, getModels } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -25,7 +24,8 @@ export default function ExchangePage() {
             Exchange Your Old Two-Wheeler
           </h1>
           <p className="mt-2 text-base text-text-muted">
-            Trade in your petrol motorcycle or scooter towards a brand-new electric scooter. Share your vehicle details to start a valuation on WhatsApp.
+            Trade in your petrol motorcycle or scooter towards a brand-new electric scooter. Share
+            your vehicle details to start a valuation on WhatsApp.
           </p>
         </div>
 

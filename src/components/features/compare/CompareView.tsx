@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { formatPrice, formatRange, formatTopSpeed } from "@/lib/format";
 import { buildWhatsAppLink, enquiryMessage } from "@/lib/whatsapp";
+import { DISCLAIMERS } from "@/lib/constants";
 import type { Model } from "@/content/schemas";
 
 interface CompareViewProps {
@@ -21,7 +22,9 @@ export function CompareView({ models, phone }: CompareViewProps) {
     const s2 = searchParams.get("model2");
     const s3 = searchParams.get("model3");
 
-    const initial = [s1, s2, s3].filter((s): s is string => Boolean(s) && models.some((m) => m.slug === s));
+    const initial = [s1, s2, s3].filter(
+      (s): s is string => Boolean(s) && models.some((m) => m.slug === s)
+    );
 
     if (initial.length > 0) {
       return initial.slice(0, 3);
@@ -56,10 +59,9 @@ export function CompareView({ models, phone }: CompareViewProps) {
 
   return (
     <div>
-      {/* Slot Selectors */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         {[0, 1, 2].map((slotIndex) => {
-          const currentSlug = selectedSlugs[slotIndex] || "none";
+          const currentSlug = selectedSlugs[slotIndex] ?? "none";
           return (
             <div
               key={slotIndex}
@@ -102,15 +104,12 @@ export function CompareView({ models, phone }: CompareViewProps) {
         </div>
       )}
 
-      {/* Side-by-Side Comparison Table */}
       {selectedModels.length > 0 ? (
         <div className="overflow-x-auto rounded-2xl border border-border-subtle bg-surface-white shadow-sm">
           <table className="w-full border-collapse text-left text-sm min-w-[600px]">
             <thead>
               <tr className="border-b border-border-subtle bg-surface-grey">
-                <th className="p-4 sm:p-5 w-44 font-bold text-text-heading">
-                  Feature / Spec
-                </th>
+                <th className="p-4 sm:p-5 w-44 font-bold text-text-heading">Feature / Spec</th>
                 {selectedModels.map((m) => (
                   <th key={m.id} className="p-4 sm:p-5 font-bold text-text-heading">
                     <div className="text-base sm:text-lg mb-1">{m.name.en}</div>
@@ -122,7 +121,6 @@ export function CompareView({ models, phone }: CompareViewProps) {
               </tr>
             </thead>
             <tbody className="divide-y divide-border-subtle">
-              {/* Image Preview Row */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Preview
@@ -131,7 +129,7 @@ export function CompareView({ models, phone }: CompareViewProps) {
                   <td key={m.id} className="p-4 sm:p-5">
                     <div className="relative aspect-[16/10] w-full max-w-[220px] rounded-lg overflow-hidden bg-surface-grey">
                       <Image
-                        src={m.photos[0] || "/images/models/sample-model-a.webp"}
+                        src={m.photos[0] ?? "/images/models/sample-model-a.webp"}
                         alt={m.name.en}
                         fill
                         className="object-cover"
@@ -142,7 +140,6 @@ export function CompareView({ models, phone }: CompareViewProps) {
                 ))}
               </tr>
 
-              {/* Price Row */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Ex-Showroom Price
@@ -153,73 +150,67 @@ export function CompareView({ models, phone }: CompareViewProps) {
                       {formatPrice(m.priceExShowroom)}
                     </div>
                     <div className="text-[11px] text-text-muted mt-0.5">
-                      Call for latest price
+                      {DISCLAIMERS.EX_SHOWROOM}
                     </div>
                   </td>
                 ))}
               </tr>
 
-              {/* Range Row */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Claimed Range
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 font-bold text-brand-primary">
-                    {formatRange(m.claimedRangeKm) || "Call showroom"}
+                    {formatRange(m.claimedRangeKm) ?? "Call showroom"}
                   </td>
                 ))}
               </tr>
 
-              {/* Top Speed Row */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Top Speed
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 text-text-body font-medium">
-                    {formatTopSpeed(m.topSpeedKmh) || "Call showroom"}
+                    {formatTopSpeed(m.topSpeedKmh) ?? "Call showroom"}
                   </td>
                 ))}
               </tr>
 
-              {/* Battery Chemistry */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Battery Type
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 text-text-body">
-                    {m.batteryType || "Call showroom"}
+                    {m.batteryType ?? "Call showroom"}
                   </td>
                 ))}
               </tr>
 
-              {/* Battery Capacity */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Capacity
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 text-text-body">
-                    {m.batteryCapacity || "Call showroom"}
+                    {m.batteryCapacity ?? "Call showroom"}
                   </td>
                 ))}
               </tr>
 
-              {/* Charging Time */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Charging Duration
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 text-text-body">
-                    {m.chargingTime || "Standard socket"}
+                    {m.chargingTime ?? "Standard socket"}
                   </td>
                 ))}
               </tr>
 
-              {/* Available Colours */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Colours
@@ -231,7 +222,6 @@ export function CompareView({ models, phone }: CompareViewProps) {
                 ))}
               </tr>
 
-              {/* Direct Enquiry Row */}
               <tr>
                 <td className="p-4 sm:p-5 font-semibold text-text-muted bg-surface-grey/30">
                   Action
