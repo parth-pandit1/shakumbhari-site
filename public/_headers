@@ -1,0 +1,12 @@
+# Cloudflare Pages Security & Cache Headers
+# NOTE: Pre-launch headers in place.
+# WARNING: The "X-Robots-Tag: noindex, nofollow" line below MUST be removed at launch.
+# NOTE: "noindex" is not privacy; pre-launch preview links should only be shared with the showroom owner.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Robots-Tag: noindex, nofollow
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; frame-src 'self' https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self';

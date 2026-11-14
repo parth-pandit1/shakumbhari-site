@@ -80,3 +80,9 @@ Logo: crop ONLY the SA mark and the "SHAKUMBHARI AUTOMOBILE" wordmark from the s
 ## 19. Unconfirmed brand and sample models
 The brand name "Tejas" is unconfirmed. Do not use it or invent any brand, model name, price or spec. Sample models are named "Sample Model A", "Sample Model B", etc., with obviously fake values, and must pass through the placeholder guard.
 
+
+## 20. LocalizedText structure for future Hindi support
+Content is English only for v1, but every user-facing text field is stored as an object `{en: string, hi?: string}` so Hindi can be added later without changing schemas. Components read the `en` value for now.
+
+## 21. No invented content
+No real brand, model name, price, spec, hours, address or review is invented. Anything unknown is `null` or a clearly marked sample (e.g. "Sample Model A" with `isSample: true`).

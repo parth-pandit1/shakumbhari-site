@@ -1,0 +1,11 @@
+[
+  {
+    "id": "sample-offer-1",
+    "title": { "en": "Sample Offer [PLACEHOLDER]" },
+    "description": { "en": "This is a sample offer description [PLACEHOLDER]" },
+    "validFrom": null,
+    "validUntil": null,
+    "active": false,
+    "isSample": true
+  }
+]

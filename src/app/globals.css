@@ -1,12 +1,184 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Typography Fonts */
+  --font-sans: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-display), var(--font-sans), system-ui, sans-serif;
+
+  /* Responsive Breakpoints (Mobile-first, designing at 360px first) */
+  --breakpoint-xs: 22.5rem; /* 360px */
+  --breakpoint-sm: 40rem;   /* 640px */
+  --breakpoint-md: 48rem;   /* 768px */
+  --breakpoint-lg: 64rem;   /* 1024px */
+  --breakpoint-xl: 80rem;   /* 1280px */
+  --breakpoint-2xl: 90rem;  /* 1440px */
+
+  /* Colour Tokens: Brand (extracted from shop sign) */
+  --color-brand-primary: #C8102E;
+  --color-brand-hover: #A50D22;
+  --color-brand-tint: #FFF1F2;
+  --color-brand-border: #FCA5A5;
+
+  /* Colour Tokens: Text */
+  --color-text-heading: #1C1C1C;
+  --color-text-body: #3D3D3D;
+  --color-text-muted: #525252;
+  --color-text-inverse: #FFFFFF;
+  --color-text-inverse-muted: #D1D5DB;
+
+  /* Colour Tokens: Surfaces */
+  --color-surface-white: #FFFFFF;
+  --color-surface-grey: #F3F4F6;
+  --color-surface-card: #FFFFFF;
+  --color-surface-dark: #1C1C1C;
+  --color-surface-dark-card: #2B2B2B;
+
+  /* Colour Tokens: Borders & Dividers */
+  --color-border-subtle: #E5E7EB;
+  --color-border-default: #D1D5DB;
+  --color-border-strong: #9CA3AF;
+
+  /* Colour Tokens: WhatsApp (Accessible: Dark text on #25D366) */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #20BA5A;
+  --color-whatsapp-text: #121212;
+  --color-whatsapp-text-deep: #0A331A;
+
+  /* Colour Tokens: Feedback (Accessible) */
+  --color-success-bg: #DCFCE7;
+  --color-success-text: #166534;
+  --color-success-solid: #15803D;
+
+  --color-warning-bg: #FEF3C7;
+  --color-warning-text: #854D0E;
+  --color-warning-solid: #D97706;
+
+  --color-danger-bg: #FEE2E2;
+  --color-danger-text: #991B1B;
+  --color-danger-solid: #DC2626;
+
+  /* Fluid Typography Scale using clamp() */
+  --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);      /* 12px -> 13px */
+  --text-sm: clamp(0.875rem, 0.84rem + 0.18vw, 0.9375rem);    /* 14px -> 15px */
+  --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);       /* 16px -> 17px */
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);      /* 18px -> 20px */
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);         /* 20px -> 24px */
+  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);      /* 24px -> 30px */
+  --text-3xl: clamp(1.875rem, 1.65rem + 1.125vw, 2.375rem);   /* 30px -> 38px */
+  --text-4xl: clamp(2.25rem, 1.95rem + 1.5vw, 3rem);          /* 36px -> 48px */
+  --text-5xl: clamp(2.75rem, 2.35rem + 2vw, 3.75rem);         /* 44px -> 60px */
+
+  /* Spacing Scale (4px increments) */
+  --spacing-0: 0px;
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+
+  /* Border Radii */
+  --radius-xs: 0.125rem;  /* 2px */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-2xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;
+
+  /* Elevation Shadows (crisp, multi-layered) */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
+  --shadow-card: 0 2px 8px -2px rgb(0 0 0 / 0.06), 0 1px 4px -1px rgb(0 0 0 / 0.04);
+
+  /* Motion Tokens */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+/* Global Base Styles */
+@layer base {
+  html {
+    color-scheme: light;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--color-surface-white);
+    color: var(--color-text-body);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-text-heading);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  /* Headings on dark surfaces must always be light/white */
+  .bg-surface-dark h1,
+  .bg-surface-dark h2,
+  .bg-surface-dark h3,
+  .bg-surface-dark h4,
+  .bg-surface-dark h5,
+  .bg-surface-dark h6,
+  .dark-surface h1,
+  .dark-surface h2,
+  .dark-surface h3,
+  .dark-surface h4,
+  .dark-surface h5,
+  .dark-surface h6,
+  footer h1,
+  footer h2,
+  footer h3,
+  footer h4,
+  footer h5,
+  footer h6 {
+    color: #FFFFFF;
+  }
+}
+
+/* Global Focus-Visible Ring (Visible on both light and dark backgrounds) */
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.25);
+}
+
+/* Dark surface focus variant */
+.dark-surface :focus-visible,
+[data-theme="dark"] :focus-visible,
+.bg-surface-dark :focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+/* Global prefers-reduced-motion Rule (disables non-essential animation) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

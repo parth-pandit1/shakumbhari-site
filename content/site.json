@@ -1,0 +1,26 @@
+{
+  "shopName": { "en": "Shakumbhari Automobile" },
+  "tagline": { "en": "Electric scooters, service and spare parts at Chhachhrauli Road, Ledi." },
+  "phone": "8168241095",
+  "whatsappNumber": null,
+  "serviceNumber": null,
+  "address": {
+    "line1": "Chhachhrauli Road",
+    "area": "Ledi",
+    "city": null,
+    "district": null,
+    "state": null,
+    "pincode": null
+  },
+  "mapsLink": "https://maps.app.goo.gl/UbuRxUMgxRuF5y3B6",
+  "mapsEmbedSrc": null,
+  "hours": null,
+  "gstin": null,
+  "social": {
+    "instagram": null
+  },
+  "logo": {
+    "src": "/images/logo-temp.webp",
+    "alt": "Shakumbhari Automobile logo"
+  }
+}

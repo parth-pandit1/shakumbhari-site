@@ -1,0 +1,108 @@
+[
+  {
+    "id": "sample-model-a",
+    "slug": "sample-model-a",
+    "name": { "en": "Sample Model A [PLACEHOLDER]" },
+    "brand": null,
+    "type": "EV",
+    "priceExShowroom": 99999,
+    "claimedRangeKm": 100,
+    "topSpeedKmh": 60,
+    "batteryType": "Lithium-ion (sample)",
+    "batteryCapacity": "2.0 kWh (sample)",
+    "chargingTime": "4-5 hours (sample)",
+    "warranty": null,
+    "colours": ["Red", "Blue", "Black"],
+    "highlights": [
+      { "en": "Sample highlight one [PLACEHOLDER]" },
+      { "en": "Sample highlight two [PLACEHOLDER]" }
+    ],
+    "photos": ["/images/models/sample-model-a.webp"],
+    "isSample": true,
+    "featured": true
+  },
+  {
+    "id": "sample-model-b",
+    "slug": "sample-model-b",
+    "name": { "en": "Sample Model B [PLACEHOLDER]" },
+    "brand": null,
+    "type": "EV",
+    "priceExShowroom": 89999,
+    "claimedRangeKm": 80,
+    "topSpeedKmh": 50,
+    "batteryType": "Lithium-ion (sample)",
+    "batteryCapacity": "1.5 kWh (sample)",
+    "chargingTime": "4-5 hours (sample)",
+    "warranty": null,
+    "colours": ["White", "Grey"],
+    "highlights": [
+      { "en": "Sample highlight one [PLACEHOLDER]" }
+    ],
+    "photos": ["/images/models/sample-model-b.webp"],
+    "isSample": true,
+    "featured": true
+  },
+  {
+    "id": "sample-model-c",
+    "slug": "sample-model-c",
+    "name": { "en": "Sample Model C [PLACEHOLDER]" },
+    "brand": null,
+    "type": "EV",
+    "priceExShowroom": 79999,
+    "claimedRangeKm": 70,
+    "topSpeedKmh": 45,
+    "batteryType": "Lithium-ion (sample)",
+    "batteryCapacity": "1.2 kWh (sample)",
+    "chargingTime": "5-6 hours (sample)",
+    "warranty": null,
+    "colours": ["Black", "Red"],
+    "highlights": [
+      { "en": "Sample highlight [PLACEHOLDER]" }
+    ],
+    "photos": ["/images/models/sample-model-c.webp"],
+    "isSample": true,
+    "featured": false
+  },
+  {
+    "id": "sample-model-d",
+    "slug": "sample-model-d",
+    "name": { "en": "Sample Model D [PLACEHOLDER]" },
+    "brand": null,
+    "type": "EV",
+    "priceExShowroom": 69999,
+    "claimedRangeKm": 60,
+    "topSpeedKmh": 40,
+    "batteryType": "Lead-acid (sample)",
+    "batteryCapacity": "1.0 kWh (sample)",
+    "chargingTime": "6-8 hours (sample)",
+    "warranty": null,
+    "colours": ["Blue", "Green"],
+    "highlights": [
+      { "en": "Sample highlight [PLACEHOLDER]" }
+    ],
+    "photos": ["/images/models/sample-model-d.webp"],
+    "isSample": true,
+    "featured": false
+  },
+  {
+    "id": "sample-model-e",
+    "slug": "sample-model-e",
+    "name": { "en": "Sample Model E [PLACEHOLDER]" },
+    "brand": null,
+    "type": "EV",
+    "priceExShowroom": 59999,
+    "claimedRangeKm": 50,
+    "topSpeedKmh": 35,
+    "batteryType": "Lead-acid (sample)",
+    "batteryCapacity": "0.8 kWh (sample)",
+    "chargingTime": "7-8 hours (sample)",
+    "warranty": null,
+    "colours": ["Black"],
+    "highlights": [
+      { "en": "Sample highlight [PLACEHOLDER]" }
+    ],
+    "photos": ["/images/models/sample-model-e.webp"],
+    "isSample": true,
+    "featured": false
+  }
+]

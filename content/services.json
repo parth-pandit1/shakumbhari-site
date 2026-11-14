@@ -1,0 +1,16 @@
+[
+  {
+    "id": "service-scooter-service",
+    "name": { "en": "Scooter Service" },
+    "description": { "en": "Regular servicing and maintenance for your electric scooter." },
+    "icon": null,
+    "confirmed": true
+  },
+  {
+    "id": "service-spare-parts",
+    "name": { "en": "Spare Parts" },
+    "description": { "en": "Spare parts and replacement components available for supported electric scooter models." },
+    "icon": null,
+    "confirmed": true
+  }
+]
