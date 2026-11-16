@@ -15,19 +15,13 @@ export default function PrivacyPage() {
     <div className="bg-surface-white min-h-screen py-12 sm:py-16">
       <Container size="md">
         <div className="mb-10">
-          <div className="inline-block px-3 py-1 mb-2 rounded-full bg-brand-tint text-brand-primary text-xs font-semibold uppercase tracking-wider">
-            Transparency &amp; Trust
-          </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-text-heading">
             Privacy Policy &amp; Data Notice
           </h1>
-          <p className="mt-2 text-sm text-text-muted">
-            Last updated: November 2026 &middot; {site.shopName.en}, Chhachhrauli Road, Ledi
-          </p>
         </div>
 
         <div className="space-y-8 text-sm sm:text-base text-text-body leading-relaxed">
-          <section className="p-6 rounded-2xl bg-surface-grey border border-border-subtle">
+          <section className="p-6 rounded-lg bg-surface-grey border border-border-subtle">
             <h2 className="text-lg font-bold text-text-heading mb-2">Our Privacy Commitment</h2>
             <p>
               At <strong>{site.shopName.en}</strong>, we respect your privacy. This website is built

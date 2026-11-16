@@ -63,7 +63,7 @@ export function ServiceBookingForm({ phone }: ServiceBookingFormProps) {
   };
 
   return (
-    <div className="p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm max-w-xl mx-auto">
+    <div className="p-6 sm:p-8 rounded-lg bg-surface-white border border-border-subtle shadow-sm w-full text-left">
       {isSubmitted ? (
         <FormSuccess
           description="Your service booking request has been formatted into WhatsApp. Please send it to confirm workshop availability with our mechanics."
@@ -76,7 +76,7 @@ export function ServiceBookingForm({ phone }: ServiceBookingFormProps) {
             <input
               id="svc-name"
               type="text"
-              placeholder="e.g. Vikas Verma"
+              placeholder="Enter your name"
               {...register("name")}
               className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-border-default focus:border-brand-primary"
             />
@@ -155,14 +155,13 @@ export function ServiceBookingForm({ phone }: ServiceBookingFormProps) {
             />
           </FormField>
 
-          <p className="text-[11px] text-text-muted leading-relaxed">
-            Note: Submitting formats a WhatsApp message. All servicing is carried out at our
-            workshop in Ledi.
-          </p>
-
           <Button type="submit" variant="whatsapp" size="lg" fullWidth disabled={isSubmitting}>
-            Book Workshop Service on WhatsApp
+            Book service on WhatsApp
           </Button>
+
+          <p className="text-[11px] text-text-muted text-center pt-1">
+            Submitting opens WhatsApp with your service details prefilled.
+          </p>
         </form>
       )}
     </div>

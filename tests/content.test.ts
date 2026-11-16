@@ -1,5 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
+import { execSync } from "node:child_process";
 import {
   getSite,
   getPerson,
@@ -45,20 +46,23 @@ describe("Content Loaders", () => {
 
   it("getPerson returns manager details with consent: false by default", () => {
     const person = getPerson();
-    assert.ok(person.name.includes("PLACEHOLDER"));
+    assert.ok(person.name && person.name.includes("PLACEHOLDER"));
     assert.strictEqual(person.role, "Manager");
     assert.strictEqual(person.consent, false, "Must default to consent: false");
     assert.strictEqual(person.photo, null);
   });
 
-  it("getModels loads all 5 sample models, all flagged with isSample: true", () => {
+  it("getModels loads all 7 real EKOTEJAS models, all flagged with isSample: false and brand: 'EKOTEJAS'", () => {
     const models = getModels();
-    assert.strictEqual(models.length, 5);
+    assert.strictEqual(models.length, 7);
     for (const model of models) {
-      assert.strictEqual(model.isSample, true, `${model.id} must have isSample: true`);
-      assert.strictEqual(model.brand, null, "Brand must be null until confirmed");
+      assert.strictEqual(model.isSample, false, `${model.id} must have isSample: false`);
+      assert.strictEqual(model.brand, "EKOTEJAS", "Brand must be EKOTEJAS");
       assert.strictEqual(model.type, "EV");
-      assert.ok(model.priceExShowroom! > 0);
+      assert.strictEqual(model.priceExShowroom, null, "Price must be null until confirmed");
+      assert.ok(model.photos.length > 0, `${model.id} must have at least one photo`);
+      assert.ok(model.photos[0].src.startsWith("/images/models/"));
+      assert.ok(model.photos[0].alt.length > 0);
     }
   });
 
@@ -71,9 +75,9 @@ describe("Content Loaders", () => {
   });
 
   it("getModelBySlug finds a model by its kebab-case slug", () => {
-    const model = getModelBySlug("sample-model-a");
+    const model = getModelBySlug("axel");
     assert.ok(model);
-    assert.strictEqual(model.slug, "sample-model-a");
+    assert.strictEqual(model.slug, "axel");
   });
 
   it("getModelBySlug returns undefined for non-existent slug", () => {
@@ -93,9 +97,28 @@ describe("Content Loaders", () => {
     assert.strictEqual(customers.length, 0);
   });
 
+  it("fails placeholder check when preview mode and indexing are both enabled", () => {
+    assert.throws(
+      () => {
+        execSync("node scripts/check-placeholders.mjs", {
+          env: {
+            ...process.env,
+            NEXT_PUBLIC_ALLOW_INDEXING: "true",
+            NEXT_PUBLIC_PREVIEW_SECTIONS: "true",
+          },
+          stdio: "pipe",
+        });
+      },
+      (err: unknown) => {
+        // Assert command failed (exit code non-zero)
+        return Boolean(err);
+      }
+    );
+  });
+
   it("getFaqs returns FAQs sorted by display order", () => {
     const faqs = getFaqs();
-    assert.strictEqual(faqs.length, 5);
+    assert.strictEqual(faqs.length, 8);
     for (let i = 0; i < faqs.length - 1; i++) {
       assert.ok(faqs[i].order <= faqs[i + 1].order);
     }

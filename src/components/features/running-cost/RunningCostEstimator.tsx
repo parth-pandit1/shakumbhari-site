@@ -55,7 +55,7 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       {/* Assumptions Inputs */}
-      <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm space-y-6">
+      <div className="lg:col-span-7 p-6 sm:p-8 rounded-lg bg-surface-white border border-border-subtle space-y-6">
         <div>
           <div className="flex justify-between items-center mb-2">
             <label htmlFor="daily-km" className="text-sm font-bold text-text-heading">
@@ -80,9 +80,7 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
         </div>
 
         <div className="pt-4 border-t border-border-subtle">
-          <h3 className="text-xs font-bold text-text-heading uppercase tracking-wider mb-4">
-            Petrol Scooter Assumptions
-          </h3>
+          <h3 className="text-xs font-bold text-text-heading mb-4">Petrol Scooter Assumptions</h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -124,9 +122,7 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
         </div>
 
         <div className="pt-4 border-t border-border-subtle">
-          <h3 className="text-xs font-bold text-text-heading uppercase tracking-wider mb-4">
-            Electric Scooter Assumptions
-          </h3>
+          <h3 className="text-xs font-bold text-text-heading mb-4">Electric Scooter Assumptions</h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -171,11 +167,9 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
       </div>
 
       {/* Comparison Results Card */}
-      <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm flex flex-col justify-between">
+      <div className="lg:col-span-5 p-6 sm:p-8 rounded-lg bg-surface-white border border-border-subtle flex flex-col justify-between">
         <div>
-          <div className="inline-block px-2.5 py-1 rounded bg-success-bg text-success-text text-xs font-bold uppercase tracking-wider mb-4">
-            Estimated Fuel Savings
-          </div>
+          <div className="text-xs text-text-muted font-semibold mb-2">Estimated fuel savings</div>
 
           <div className="text-4xl sm:text-5xl font-extrabold text-success-solid tracking-tight mb-1">
             ₹{stats.annualSavings.toLocaleString("en-IN")}
@@ -210,14 +204,14 @@ export function RunningCostEstimator({ phone }: RunningCostEstimatorProps) {
           </div>
 
           {/* Estimate Label / Disclaimer */}
-          <div className="p-3.5 rounded-xl bg-surface-grey border border-border-subtle mt-6 text-xs text-text-muted leading-relaxed">
+          <div className="p-3.5 rounded-md bg-surface-grey border border-border-subtle mt-6 text-xs text-text-muted leading-relaxed">
             <strong>Estimation Notice:</strong> {DISCLAIMERS.RUNNING_COST}
           </div>
         </div>
 
         <div className="mt-8 pt-4">
           <Button href={whatsappUrl} isExternal variant="whatsapp" size="lg" fullWidth>
-            Find a Scooter for Your Daily Commute
+            WhatsApp
           </Button>
         </div>
       </div>

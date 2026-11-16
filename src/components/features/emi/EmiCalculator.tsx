@@ -69,7 +69,7 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm space-y-6">
+      <div className="lg:col-span-7 p-6 sm:p-8 rounded-lg bg-surface-white border border-border-subtle space-y-6">
         <div>
           <div className="flex justify-between items-center mb-2">
             <label htmlFor="price-range" className="text-sm font-bold text-text-heading">
@@ -170,10 +170,10 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
         </div>
       </div>
 
-      <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm flex flex-col justify-between">
+      <div className="lg:col-span-5 p-6 sm:p-8 rounded-lg bg-surface-white border border-border-subtle flex flex-col justify-between">
         <div>
-          <div className="inline-block px-2.5 py-1 rounded bg-brand-tint text-brand-primary text-xs font-bold uppercase tracking-wider mb-4">
-            Estimated Monthly Payment
+          <div className="text-xs text-text-muted font-semibold mb-2">
+            Estimated monthly payment
           </div>
 
           <div className="text-4xl sm:text-5xl font-extrabold text-text-heading tracking-tight mb-1">
@@ -203,14 +203,14 @@ export function EmiCalculator({ phone }: EmiCalculatorProps) {
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 mt-6 text-xs text-amber-900 leading-relaxed">
+          <div className="p-3.5 rounded-md bg-amber-50 border border-amber-200 mt-6 text-xs text-amber-900 leading-relaxed">
             <strong>Disclaimer:</strong> {DISCLAIMERS.FINANCE}
           </div>
         </div>
 
         <div className="mt-8 pt-4">
           <Button href={whatsappUrl} isExternal variant="whatsapp" size="lg" fullWidth>
-            Enquire About Loan Terms on WhatsApp
+            WhatsApp
           </Button>
         </div>
       </div>

@@ -1,100 +1,693 @@
 [
   {
-    "id": "sample-model-a",
-    "slug": "sample-model-a",
-    "name": { "en": "Sample Model A [PLACEHOLDER]" },
-    "brand": null,
+    "id": "axel",
+    "slug": "axel",
+    "name": { "en": "Axel" },
+    "brand": "EKOTEJAS",
     "type": "EV",
-    "priceExShowroom": 99999,
+    "description": {
+      "en": "An electric two-wheeler featuring a 250W BLDC hub motor, front disc and rear drum brakes, and multiple battery options."
+    },
+    "priceExShowroom": null,
     "claimedRangeKm": 100,
-    "topSpeedKmh": 60,
-    "batteryType": "Lithium-ion (sample)",
-    "batteryCapacity": "2.0 kWh (sample)",
-    "chargingTime": "4-5 hours (sample)",
+    "claimedRangeKmMin": 44,
+    "claimedRangeKmMax": 100,
+    "topSpeedKmh": 25,
+    "topSpeedText": "25 km/h, 3 speed modes",
+    "batteryType": "Lead-acid / Li-ion",
+    "batteryCapacity": "24Ah - 30Ah",
+    "chargingTime": null,
     "warranty": null,
-    "colours": ["Red", "Blue", "Black"],
-    "highlights": [
-      { "en": "Sample highlight one [PLACEHOLDER]" },
-      { "en": "Sample highlight two [PLACEHOLDER]" }
+    "warrantyText": null,
+    "available": true,
+    "isSample": false,
+    "featured": true,
+    "colours": [
+      { "name": "Red", "hex": "#DC2626" },
+      { "name": "White", "hex": "#FFFFFF" }
     ],
-    "photos": ["/images/models/sample-model-a.webp"],
-    "isSample": true,
-    "featured": true
+    "variants": [
+      {
+        "label": "48V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 48,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 44,
+        "claimedRangeKmMax": 55,
+        "offered": true
+      },
+      {
+        "label": "60V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 60,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 60,
+        "claimedRangeKmMax": 65,
+        "offered": true
+      },
+      {
+        "label": "48V 25Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 48,
+        "capacityAh": 25,
+        "claimedRangeKmMin": 65,
+        "claimedRangeKmMax": 70,
+        "offered": true
+      },
+      {
+        "label": "60V 24Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 24,
+        "claimedRangeKmMin": 70,
+        "claimedRangeKmMax": 75,
+        "offered": true
+      },
+      {
+        "label": "60V 30Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 30,
+        "claimedRangeKmMin": 90,
+        "claimedRangeKmMax": 100,
+        "offered": true
+      }
+    ],
+    "specs": [
+      { "label": "Top Speed", "value": "25 km/h, 3 speed modes" },
+      { "label": "Voltage", "value": "48V / 60V" },
+      { "label": "Rated Power", "value": "250 W" },
+      { "label": "Motor Type", "value": "BLDC Hub Motor" },
+      { "label": "Dimensions", "value": "1803 x 711 x 1145 mm" },
+      { "label": "Loading Capacity", "value": "2 PAX + Luggage" },
+      { "label": "Lighting", "value": "LED" },
+      { "label": "Speedometer", "value": "Digital LCD Display" },
+      { "label": "Brakes", "value": "Front Disc, Rear Drum" },
+      { "label": "Ground Clearance", "value": "270 mm" },
+      { "label": "Boot Space", "value": "20 L" },
+      { "label": "Controller", "value": "12-Tube Controller" },
+      { "label": "Suspension", "value": "Front Telescopic, Rear Hydraulic Shock Absorber" }
+    ],
+    "highlights": [
+      { "en": "Front disc brake and rear drum brake" },
+      { "en": "Digital LCD display with 3 speed modes" },
+      { "en": "270 mm ground clearance and 20L boot space" }
+    ],
+    "photos": [
+      {
+        "src": "/images/models/axel/axel-red.webp",
+        "alt": "EKOTEJAS Axel electric scooter, red, three-quarter view",
+        "colour": "Red"
+      },
+      {
+        "src": "/images/models/axel/axel-white.webp",
+        "alt": "EKOTEJAS Axel electric scooter, white, side view",
+        "colour": "White"
+      }
+    ]
   },
   {
-    "id": "sample-model-b",
-    "slug": "sample-model-b",
-    "name": { "en": "Sample Model B [PLACEHOLDER]" },
-    "brand": null,
+    "id": "axel-pro",
+    "slug": "axel-pro",
+    "name": { "en": "Axel Pro" },
+    "brand": "EKOTEJAS",
     "type": "EV",
-    "priceExShowroom": 89999,
-    "claimedRangeKm": 80,
-    "topSpeedKmh": 50,
-    "batteryType": "Lithium-ion (sample)",
-    "batteryCapacity": "1.5 kWh (sample)",
-    "chargingTime": "4-5 hours (sample)",
+    "description": {
+      "en": "An urban electric two-wheeler equipped with a 250W BLDC hub motor, LED lighting, and telescopic front suspension."
+    },
+    "priceExShowroom": null,
+    "claimedRangeKm": 100,
+    "claimedRangeKmMin": 44,
+    "claimedRangeKmMax": 100,
+    "topSpeedKmh": 25,
+    "topSpeedText": "25 km/h, 3 speed modes",
+    "batteryType": "Lead-acid / Li-ion",
+    "batteryCapacity": "24Ah - 30Ah",
+    "chargingTime": null,
     "warranty": null,
-    "colours": ["White", "Grey"],
-    "highlights": [{ "en": "Sample highlight one [PLACEHOLDER]" }],
-    "photos": ["/images/models/sample-model-b.webp"],
-    "isSample": true,
-    "featured": true
+    "warrantyText": null,
+    "available": true,
+    "isSample": false,
+    "featured": true,
+    "colours": [
+      { "name": "Red", "hex": "#DC2626" },
+      { "name": "White", "hex": "#FFFFFF" }
+    ],
+    "variants": [
+      {
+        "label": "48V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 48,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 44,
+        "claimedRangeKmMax": 55,
+        "offered": true
+      },
+      {
+        "label": "60V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 60,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 60,
+        "claimedRangeKmMax": 65,
+        "offered": true
+      },
+      {
+        "label": "48V 25Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 48,
+        "capacityAh": 25,
+        "claimedRangeKmMin": 65,
+        "claimedRangeKmMax": 70,
+        "offered": true
+      },
+      {
+        "label": "60V 24Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 24,
+        "claimedRangeKmMin": 70,
+        "claimedRangeKmMax": 75,
+        "offered": true
+      },
+      {
+        "label": "60V 30Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 30,
+        "claimedRangeKmMin": 90,
+        "claimedRangeKmMax": 100,
+        "offered": true
+      }
+    ],
+    "specs": [
+      { "label": "Top Speed", "value": "25 km/h, 3 speed modes" },
+      { "label": "Voltage", "value": "48V / 60V" },
+      { "label": "Rated Power", "value": "250 W" },
+      { "label": "Motor Type", "value": "BLDC Hub Motor" },
+      { "label": "Dimensions", "value": "1803 x 711 x 1145 mm" },
+      { "label": "Loading Capacity", "value": "2 PAX + Luggage" },
+      { "label": "Lighting", "value": "LED" },
+      { "label": "Speedometer", "value": "Digital LCD Display" },
+      { "label": "Brakes", "value": "Front Disc, Rear Drum" },
+      { "label": "Ground Clearance", "value": "270 mm" },
+      { "label": "Boot Space", "value": "20 L" },
+      { "label": "Controller", "value": "12-Tube Controller" },
+      { "label": "Suspension", "value": "Front Telescopic, Rear Hydraulic Shock Absorber" }
+    ],
+    "highlights": [
+      { "en": "Integrated LED lighting system" },
+      { "en": "Front disc and rear drum braking system" },
+      { "en": "Telescopic front and hydraulic rear suspension" }
+    ],
+    "photos": [
+      {
+        "src": "/images/models/axel-pro/axel-pro-red.webp",
+        "alt": "EKOTEJAS Axel Pro electric scooter, red, three-quarter view",
+        "colour": "Red"
+      },
+      {
+        "src": "/images/models/axel-pro/axel-pro-white.webp",
+        "alt": "EKOTEJAS Axel Pro electric scooter, white, side view",
+        "colour": "White"
+      }
+    ]
   },
   {
-    "id": "sample-model-c",
-    "slug": "sample-model-c",
-    "name": { "en": "Sample Model C [PLACEHOLDER]" },
-    "brand": null,
+    "id": "era",
+    "slug": "era",
+    "name": { "en": "Era" },
+    "brand": "EKOTEJAS",
     "type": "EV",
-    "priceExShowroom": 79999,
-    "claimedRangeKm": 70,
-    "topSpeedKmh": 45,
-    "batteryType": "Lithium-ion (sample)",
-    "batteryCapacity": "1.2 kWh (sample)",
-    "chargingTime": "5-6 hours (sample)",
+    "description": {
+      "en": "A commuter electric two-wheeler featuring a 250W motor, 320 mm ground clearance, and an LCD digital display."
+    },
+    "priceExShowroom": null,
+    "claimedRangeKm": 100,
+    "claimedRangeKmMin": 44,
+    "claimedRangeKmMax": 100,
+    "topSpeedKmh": 25,
+    "topSpeedText": "25 km/h, 3 speed modes",
+    "batteryType": "Lead-acid / Li-ion",
+    "batteryCapacity": "24Ah - 30Ah",
+    "chargingTime": null,
     "warranty": null,
-    "colours": ["Black", "Red"],
-    "highlights": [{ "en": "Sample highlight [PLACEHOLDER]" }],
-    "photos": ["/images/models/sample-model-c.webp"],
-    "isSample": true,
-    "featured": false
+    "warrantyText": null,
+    "available": true,
+    "isSample": false,
+    "featured": false,
+    "colours": [{ "name": "Red", "hex": "#DC2626" }],
+    "variants": [
+      {
+        "label": "48V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 48,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 44,
+        "claimedRangeKmMax": 55,
+        "offered": true
+      },
+      {
+        "label": "60V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 60,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 60,
+        "claimedRangeKmMax": 65,
+        "offered": true
+      },
+      {
+        "label": "48V 25Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 48,
+        "capacityAh": 25,
+        "claimedRangeKmMin": 65,
+        "claimedRangeKmMax": 70,
+        "offered": true
+      },
+      {
+        "label": "60V 24Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 24,
+        "claimedRangeKmMin": 70,
+        "claimedRangeKmMax": 75,
+        "offered": true
+      },
+      {
+        "label": "60V 30Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 30,
+        "claimedRangeKmMin": 90,
+        "claimedRangeKmMax": 100,
+        "offered": true
+      }
+    ],
+    "specs": [
+      { "label": "Top Speed", "value": "25 km/h, 3 speed modes" },
+      { "label": "Voltage", "value": "48V / 60V" },
+      { "label": "Rated Power", "value": "250 W" },
+      { "label": "Motor Type", "value": "BLDC Hub Motor" },
+      { "label": "Dimensions", "value": "1803 x 711 x 1145 mm" },
+      { "label": "Loading Capacity", "value": "2 PAX + Luggage" },
+      { "label": "Lighting", "value": "LED" },
+      { "label": "Speedometer", "value": "Digital LCD Display" },
+      { "label": "Brakes", "value": "Front Disc, Rear Drum" },
+      { "label": "Ground Clearance", "value": "320 mm" },
+      { "label": "Boot Space", "value": "15 L" },
+      { "label": "Controller", "value": "12-Tube Controller" },
+      { "label": "Suspension", "value": "Front Telescopic, Rear Hydraulic Shock Absorber" }
+    ],
+    "highlights": [
+      { "en": "320 mm high ground clearance" },
+      { "en": "Front disc and rear drum braking system" },
+      { "en": "Digital LCD instrument cluster" }
+    ],
+    "photos": [
+      {
+        "src": "/images/models/era/era-red.webp",
+        "alt": "EKOTEJAS Era electric scooter, red, three-quarter view",
+        "colour": "Red"
+      }
+    ]
   },
   {
-    "id": "sample-model-d",
-    "slug": "sample-model-d",
-    "name": { "en": "Sample Model D [PLACEHOLDER]" },
-    "brand": null,
+    "id": "era-pro",
+    "slug": "era-pro",
+    "name": { "en": "Era Pro" },
+    "brand": "EKOTEJAS",
     "type": "EV",
-    "priceExShowroom": 69999,
-    "claimedRangeKm": 60,
-    "topSpeedKmh": 40,
-    "batteryType": "Lead-acid (sample)",
-    "batteryCapacity": "1.0 kWh (sample)",
-    "chargingTime": "6-8 hours (sample)",
+    "description": {
+      "en": "A commuter electric two-wheeler with a 250W motor, 320 mm ground clearance, digital instrumentation, and disc-drum braking."
+    },
+    "priceExShowroom": null,
+    "claimedRangeKm": 100,
+    "claimedRangeKmMin": 44,
+    "claimedRangeKmMax": 100,
+    "topSpeedKmh": 25,
+    "topSpeedText": "25 km/h, 3 speed modes",
+    "batteryType": "Lead-acid / Li-ion",
+    "batteryCapacity": "24Ah - 30Ah",
+    "chargingTime": null,
     "warranty": null,
-    "colours": ["Blue", "Green"],
-    "highlights": [{ "en": "Sample highlight [PLACEHOLDER]" }],
-    "photos": ["/images/models/sample-model-d.webp"],
-    "isSample": true,
-    "featured": false
+    "warrantyText": null,
+    "available": true,
+    "isSample": false,
+    "featured": false,
+    "colours": [{ "name": "Blue", "hex": "#2563EB" }],
+    "variants": [
+      {
+        "label": "48V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 48,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 44,
+        "claimedRangeKmMax": 55,
+        "offered": true
+      },
+      {
+        "label": "60V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 60,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 60,
+        "claimedRangeKmMax": 65,
+        "offered": true
+      },
+      {
+        "label": "48V 25Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 48,
+        "capacityAh": 25,
+        "claimedRangeKmMin": 65,
+        "claimedRangeKmMax": 70,
+        "offered": true
+      },
+      {
+        "label": "60V 24Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 24,
+        "claimedRangeKmMin": 70,
+        "claimedRangeKmMax": 75,
+        "offered": true
+      },
+      {
+        "label": "60V 30Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 30,
+        "claimedRangeKmMin": 90,
+        "claimedRangeKmMax": 100,
+        "offered": true
+      }
+    ],
+    "specs": [
+      { "label": "Top Speed", "value": "25 km/h, 3 speed modes" },
+      { "label": "Voltage", "value": "48V / 60V" },
+      { "label": "Rated Power", "value": "250 W" },
+      { "label": "Motor Type", "value": "BLDC Hub Motor" },
+      { "label": "Dimensions", "value": "1803 x 711 x 1145 mm" },
+      { "label": "Loading Capacity", "value": "2 PAX + Luggage" },
+      { "label": "Lighting", "value": "LED" },
+      { "label": "Speedometer", "value": "Digital LCD Display" },
+      { "label": "Brakes", "value": "Front Disc, Rear Drum" },
+      { "label": "Ground Clearance", "value": "320 mm" },
+      { "label": "Boot Space", "value": "15 L" },
+      { "label": "Controller", "value": "12-Tube Controller" },
+      { "label": "Suspension", "value": "Front Telescopic, Rear Hydraulic Shock Absorber" }
+    ],
+    "highlights": [
+      { "en": "320 mm ground clearance" },
+      { "en": "Front telescopic and rear hydraulic suspension" },
+      { "en": "Digital LCD speedometer display" }
+    ],
+    "photos": [
+      {
+        "src": "/images/models/era-pro/era-pro-blue.webp",
+        "alt": "EKOTEJAS Era Pro electric scooter, blue, three-quarter view",
+        "colour": "Blue"
+      }
+    ]
   },
   {
-    "id": "sample-model-e",
-    "slug": "sample-model-e",
-    "name": { "en": "Sample Model E [PLACEHOLDER]" },
-    "brand": null,
+    "id": "reco",
+    "slug": "reco",
+    "name": { "en": "Reco" },
+    "brand": "EKOTEJAS",
     "type": "EV",
-    "priceExShowroom": 59999,
-    "claimedRangeKm": 50,
-    "topSpeedKmh": 35,
-    "batteryType": "Lead-acid (sample)",
-    "batteryCapacity": "0.8 kWh (sample)",
-    "chargingTime": "7-8 hours (sample)",
+    "description": {
+      "en": "An electric two-wheeler featuring a 250W BLDC motor, 270 mm ground clearance, and 20-litre boot capacity."
+    },
+    "priceExShowroom": null,
+    "claimedRangeKm": 100,
+    "claimedRangeKmMin": 44,
+    "claimedRangeKmMax": 100,
+    "topSpeedKmh": 25,
+    "topSpeedText": "25 km/h, 3 speed modes",
+    "batteryType": "Lead-acid / Li-ion",
+    "batteryCapacity": "24Ah - 30Ah",
+    "chargingTime": null,
     "warranty": null,
-    "colours": ["Black"],
-    "highlights": [{ "en": "Sample highlight [PLACEHOLDER]" }],
-    "photos": ["/images/models/sample-model-e.webp"],
-    "isSample": true,
-    "featured": false
+    "warrantyText": null,
+    "available": true,
+    "isSample": false,
+    "featured": false,
+    "colours": [{ "name": "Red", "hex": "#DC2626" }],
+    "variants": [
+      {
+        "label": "48V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 48,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 44,
+        "claimedRangeKmMax": 55,
+        "offered": true
+      },
+      {
+        "label": "60V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 60,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 60,
+        "claimedRangeKmMax": 65,
+        "offered": true
+      },
+      {
+        "label": "48V 25Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 48,
+        "capacityAh": 25,
+        "claimedRangeKmMin": 65,
+        "claimedRangeKmMax": 70,
+        "offered": true
+      },
+      {
+        "label": "60V 24Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 24,
+        "claimedRangeKmMin": 70,
+        "claimedRangeKmMax": 75,
+        "offered": true
+      },
+      {
+        "label": "60V 30Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 30,
+        "claimedRangeKmMin": 90,
+        "claimedRangeKmMax": 100,
+        "offered": true
+      }
+    ],
+    "specs": [
+      { "label": "Top Speed", "value": "25 km/h, 3 speed modes" },
+      { "label": "Voltage", "value": "48V / 60V" },
+      { "label": "Rated Power", "value": "250 W" },
+      { "label": "Motor Type", "value": "BLDC Hub Motor" },
+      { "label": "Dimensions", "value": "1803 x 711 x 1145 mm" },
+      { "label": "Loading Capacity", "value": "2 PAX + Luggage" },
+      { "label": "Lighting", "value": "LED" },
+      { "label": "Speedometer", "value": "Digital LCD Display" },
+      { "label": "Brakes", "value": "Front Disc, Rear Drum" },
+      { "label": "Ground Clearance", "value": "270 mm" },
+      { "label": "Boot Space", "value": "20 L" },
+      { "label": "Controller", "value": "12-Tube Controller" },
+      { "label": "Suspension", "value": "Front Telescopic, Rear Hydraulic Shock Absorber" }
+    ],
+    "highlights": [
+      { "en": "250W BLDC hub motor with 3 speed modes" },
+      { "en": "20L under-seat storage space" },
+      { "en": "270 mm ground clearance" }
+    ],
+    "photos": [
+      {
+        "src": "/images/models/reco/reco-red.webp",
+        "alt": "EKOTEJAS Reco electric scooter, red, three-quarter view",
+        "colour": "Red"
+      }
+    ]
+  },
+  {
+    "id": "prive",
+    "slug": "prive",
+    "name": { "en": "Prive" },
+    "brand": "EKOTEJAS",
+    "type": "EV",
+    "description": {
+      "en": "A high-speed electric two-wheeler featuring a 1500W motor, front and rear disc brakes, and a 40-litre boot space."
+    },
+    "priceExShowroom": null,
+    "claimedRangeKm": 140,
+    "claimedRangeKmMin": 95,
+    "claimedRangeKmMax": 140,
+    "topSpeedKmh": null,
+    "topSpeedText": null,
+    "batteryType": "Li-ion",
+    "batteryCapacity": "30Ah - 40Ah",
+    "chargingTime": null,
+    "warranty": null,
+    "warrantyText": null,
+    "available": true,
+    "isSample": false,
+    "featured": true,
+    "colours": [{ "name": "White", "hex": "#FFFFFF" }],
+    "variants": [
+      {
+        "label": "72V 30Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 72,
+        "capacityAh": 30,
+        "claimedRangeKmMin": 95,
+        "claimedRangeKmMax": 105,
+        "offered": true
+      },
+      {
+        "label": "72V 36Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 72,
+        "capacityAh": 36,
+        "claimedRangeKmMin": 115,
+        "claimedRangeKmMax": 125,
+        "offered": true
+      },
+      {
+        "label": "72V 40Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 72,
+        "capacityAh": 40,
+        "claimedRangeKmMin": 130,
+        "claimedRangeKmMax": 140,
+        "offered": true
+      }
+    ],
+    "specs": [
+      { "label": "Top Speed", "value": "Ask at the showroom" },
+      { "label": "Voltage", "value": "72V" },
+      { "label": "Rated Power", "value": "1500 W" },
+      { "label": "Motor Type", "value": "BLDC Hub Motor" },
+      { "label": "Dimensions", "value": "1850 x 760 x 1180 mm" },
+      { "label": "Loading Capacity", "value": "2 PAX + Luggage" },
+      { "label": "Lighting", "value": "LED" },
+      { "label": "Speedometer", "value": "Digital LCD Display" },
+      { "label": "Brakes", "value": "Front Disc, Rear Disc" },
+      { "label": "Ground Clearance", "value": "243 mm" },
+      { "label": "Boot Space", "value": "40 L" },
+      { "label": "Controller", "value": "12-Tube Controller" },
+      { "label": "Suspension", "value": "Front Telescopic, Rear Hydraulic Shock Absorber" }
+    ],
+    "highlights": [
+      { "en": "1500W BLDC powertrain" },
+      { "en": "Dual disc brakes (front and rear)" },
+      { "en": "40L large under-seat boot space" }
+    ],
+    "photos": [
+      {
+        "src": "/images/models/prive/prive-white.webp",
+        "alt": "EKOTEJAS Prive electric scooter, white, side view",
+        "colour": "White"
+      }
+    ]
+  },
+  {
+    "id": "evxtro",
+    "slug": "evxtro",
+    "name": { "en": "EVXTRO" },
+    "brand": "EKOTEJAS",
+    "type": "EV",
+    "description": {
+      "en": "A mid-range electric two-wheeler powered by a 1000W BLDC hub motor with dual disc brakes and up to 50Ah battery capacity."
+    },
+    "priceExShowroom": null,
+    "claimedRangeKm": 160,
+    "claimedRangeKmMin": 55,
+    "claimedRangeKmMax": 160,
+    "topSpeedKmh": 55,
+    "topSpeedText": "55 km/h",
+    "batteryType": "Lead-acid / Li-ion",
+    "batteryCapacity": "28Ah - 50Ah",
+    "chargingTime": null,
+    "warranty": null,
+    "warrantyText": null,
+    "available": true,
+    "isSample": false,
+    "featured": true,
+    "colours": [{ "name": "White", "hex": "#FFFFFF" }],
+    "variants": [
+      {
+        "label": "60V 28Ah Lead-acid",
+        "batteryType": "Lead-acid",
+        "voltageV": 60,
+        "capacityAh": 28,
+        "claimedRangeKmMin": 55,
+        "claimedRangeKmMax": 60,
+        "offered": true
+      },
+      {
+        "label": "60V 30Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 30,
+        "claimedRangeKmMin": 90,
+        "claimedRangeKmMax": 100,
+        "offered": true
+      },
+      {
+        "label": "60V 36Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 36,
+        "claimedRangeKmMin": 100,
+        "claimedRangeKmMax": 110,
+        "offered": true
+      },
+      {
+        "label": "60V 40Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 40,
+        "claimedRangeKmMin": 110,
+        "claimedRangeKmMax": 125,
+        "offered": true
+      },
+      {
+        "label": "60V 50Ah Li-ion",
+        "batteryType": "Li-ion",
+        "voltageV": 60,
+        "capacityAh": 50,
+        "claimedRangeKmMin": 138,
+        "claimedRangeKmMax": 160,
+        "offered": true
+      }
+    ],
+    "specs": [
+      { "label": "Top Speed", "value": "55 km/h" },
+      { "label": "Voltage", "value": "60V" },
+      { "label": "Rated Power", "value": "1000 W" },
+      { "label": "Motor Type", "value": "BLDC Hub Motor" },
+      { "label": "Dimensions", "value": "1850 x 711 x 1145 mm" },
+      { "label": "Loading Capacity", "value": "2 PAX + Luggage" },
+      { "label": "Lighting", "value": "LED" },
+      { "label": "Speedometer", "value": "Digital LCD Display" },
+      { "label": "Brakes", "value": "Front Disc, Rear Disc" },
+      { "label": "Ground Clearance", "value": "270 mm" },
+      { "label": "Boot Space", "value": "20 L" },
+      { "label": "Controller", "value": "12-Tube Controller" },
+      { "label": "Suspension", "value": "Front Telescopic, Rear Hydraulic Shock Absorber" }
+    ],
+    "highlights": [
+      { "en": "1000W BLDC hub motor" },
+      { "en": "Dual disc brakes (front and rear)" },
+      { "en": "Battery variants up to 50Ah Li-ion" }
+    ],
+    "photos": [
+      {
+        "src": "/images/models/evxtro/evxtro-white.webp",
+        "alt": "EKOTEJAS EVXTRO electric scooter, white, side view",
+        "colour": "White"
+      }
+    ]
   }
 ]

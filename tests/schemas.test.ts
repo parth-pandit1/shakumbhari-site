@@ -4,6 +4,8 @@ import {
   SiteSchema,
   ModelSchema,
   CustomerSchema,
+  PersonSchema,
+  FaqSchema,
   LocalizedTextSchema,
 } from "../src/content/schemas.ts";
 
@@ -41,7 +43,10 @@ describe("ModelSchema", () => {
     batteryCapacity: "1.8 kWh",
     chargingTime: "4 hours",
     warranty: null,
-    colours: ["Red", "Black"],
+    colours: [
+      { name: "Red", hex: "#DC2626" },
+      { name: "Black", hex: "#1C1C1C" },
+    ],
     highlights: [{ en: "Quick Acceleration" }],
     photos: [],
     isSample: true,
@@ -82,28 +87,70 @@ describe("CustomerSchema & Consent Gating (Rule 5)", () => {
   it("defaults consent to false when omitted", () => {
     const data = {
       id: "cust-1",
-      name: "Customer Name",
-      photo: null,
-      model: "Sample Model",
-      review: { en: "Great scooter" },
-      rating: 5,
+      firstName: "Customer",
+      vehicleModel: "Axel",
+      image: { src: "/images/customers/cust-1.webp", alt: "Customer with Axel" },
+      date: "2026-11",
     };
     const parsed = CustomerSchema.parse(data);
     assert.strictEqual(parsed.consent, false);
+    assert.strictEqual(parsed.quoteConsent, false);
   });
 
-  it("rejects ratings outside 1-5 range", () => {
+  it("validates consented customer with quote", () => {
     const data = {
-      id: "cust-1",
-      name: "Customer Name",
-      photo: null,
-      model: "Sample Model",
-      review: { en: "Great scooter" },
-      rating: 6,
+      id: "cust-2",
+      firstName: "Amit",
+      vehicleModel: "Axel Pro",
+      image: { src: "/images/customers/cust-2.webp", alt: "Amit with Axel Pro" },
+      date: "2026-11",
       consent: true,
+      quote: "Smooth riding on village roads.",
+      quoteConsent: true,
     };
     const res = CustomerSchema.safeParse(data);
-    assert.strictEqual(res.success, false);
+    assert.strictEqual(res.success, true);
+  });
+});
+
+describe("PersonSchema & Consent", () => {
+  it("defaults consent to false and facts to empty array", () => {
+    const data = {
+      name: "Manager",
+      role: "Showroom Manager",
+      photo: null,
+      message: null,
+    };
+    const parsed = PersonSchema.parse(data);
+    assert.strictEqual(parsed.consent, false);
+    assert.deepStrictEqual(parsed.facts, []);
+  });
+
+  it("validates full consented person with facts", () => {
+    const data = {
+      name: "Person Name",
+      role: "Showroom Manager",
+      photo: "/images/manager.webp",
+      message: { en: "Welcome to our showroom" },
+      consent: true,
+      facts: [{ label: "Experience", value: "5 years" }],
+    };
+    const res = PersonSchema.safeParse(data);
+    assert.strictEqual(res.success, true);
+  });
+});
+
+describe("FaqSchema & Categories", () => {
+  it("accepts valid FAQ with category", () => {
+    const data = {
+      id: "faq-test",
+      question: { en: "What is the warranty?" },
+      answer: { en: "Test answer" },
+      category: "Buying",
+      order: 1,
+    };
+    const res = FaqSchema.safeParse(data);
+    assert.strictEqual(res.success, true);
   });
 });
 
@@ -184,5 +231,32 @@ describe("SiteSchema embed and GSTIN validation", () => {
     };
     const res = SiteSchema.safeParse(siteData);
     assert.strictEqual(res.success, false);
+  });
+
+  it("validates googleReviewsUrl when provided", () => {
+    const siteData = {
+      shopName: { en: "Test Shop" },
+      tagline: { en: "Test Tagline" },
+      phone: "8168241095",
+      whatsappNumber: null,
+      serviceNumber: null,
+      address: {
+        line1: "Road",
+        area: "Area",
+        city: null,
+        district: null,
+        state: null,
+        pincode: null,
+      },
+      mapsLink: null,
+      mapsEmbedSrc: null,
+      googleReviewsUrl: "https://g.page/r/test/review",
+      hours: null,
+      gstin: null,
+      social: { instagram: null },
+      logo: { src: "/logo.png", alt: "Logo" },
+    };
+    const res = SiteSchema.safeParse(siteData);
+    assert.strictEqual(res.success, true);
   });
 });

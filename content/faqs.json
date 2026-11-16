@@ -1,42 +1,90 @@
 [
   {
-    "id": "faq-ev-basics",
-    "question": { "en": "What is an electric scooter?" },
-    "answer": {
-      "en": "An electric scooter is a two-wheeler powered by a rechargeable battery and an electric motor. It produces zero tailpipe emissions and runs quietly compared to petrol scooters."
+    "id": "faq-claimed-range",
+    "question": {
+      "en": "How should I read the claimed range numbers?"
     },
+    "answer": {
+      "en": "Claimed range is a manufacturer testing figure that depends on the battery variant. Because battery options vary, we show a minimum and maximum range for each model."
+    },
+    "category": "Buying",
     "order": 1
   },
   {
-    "id": "faq-charging",
-    "question": { "en": "How do I charge an electric scooter?" },
-    "answer": {
-      "en": "Most electric scooters come with a portable charger that plugs into any standard household socket. Simply connect the charger to the scooter and plug it in. Charging times vary by model."
+    "id": "faq-call-for-price",
+    "question": {
+      "en": "Why do some models say call for price?"
     },
+    "answer": {
+      "en": "Prices depend on the specific battery configuration and are confirmed directly at our showroom on Chhachhrauli Road."
+    },
+    "category": "Buying",
     "order": 2
   },
   {
-    "id": "faq-running-cost",
-    "question": { "en": "What is the approximate running cost of an electric scooter?" },
-    "answer": {
-      "en": "Electric scooters are significantly cheaper to run than petrol scooters. Electricity costs for a full charge are typically a fraction of what petrol would cost for the same distance. Exact costs depend on your local electricity rate and the scooter model."
+    "id": "faq-book-test-ride",
+    "question": {
+      "en": "How do I book a test ride on this website?"
     },
+    "answer": {
+      "en": "Go to the test ride page, pick your scooter model and preferred date, and submit the form. It opens WhatsApp with your booking details ready to send."
+    },
+    "category": "Buying",
     "order": 3
   },
   {
-    "id": "faq-visit-showroom",
-    "question": { "en": "Can I visit the showroom for a test ride?" },
-    "answer": {
-      "en": "Yes, you are welcome to visit our showroom at Chhachhrauli Road, Ledi. Please call or WhatsApp us to confirm availability before your visit."
+    "id": "faq-reach-shop",
+    "question": {
+      "en": "How can I visit your showroom in Ledi?"
     },
+    "answer": {
+      "en": "Our showroom is located on Chhachhrauli Road in Ledi. You can click Get directions on the website to open our location in Google Maps."
+    },
+    "category": "Buying",
     "order": 4
   },
   {
-    "id": "faq-payment",
-    "question": { "en": "What payment methods are accepted?" },
-    "answer": {
-      "en": "Please contact us directly for information about accepted payment methods and any available options. Call or WhatsApp us for details."
+    "id": "faq-emi-calculator",
+    "question": {
+      "en": "How does the EMI calculator work?"
     },
+    "answer": {
+      "en": "The calculator uses standard reducing balance formulas to show indicative monthly estimates. You can adjust the vehicle price, down payment, loan tenure, and interest rate."
+    },
+    "category": "Tools",
     "order": 5
+  },
+  {
+    "id": "faq-running-cost",
+    "question": {
+      "en": "What is the petrol versus electric cost estimator?"
+    },
+    "answer": {
+      "en": "It is an estimation tool that compares fuel costs with electricity costs. All numbers, such as daily riding distance and petrol prices, can be edited to match your commute."
+    },
+    "category": "Tools",
+    "order": 6
+  },
+  {
+    "id": "faq-service-booking",
+    "question": {
+      "en": "How do I book a service appointment?"
+    },
+    "answer": {
+      "en": "Visit our service page, enter your vehicle details, and choose a date. The form formats your request into a message to confirm with our workshop on WhatsApp."
+    },
+    "category": "Service",
+    "order": 7
+  },
+  {
+    "id": "faq-spare-parts",
+    "question": {
+      "en": "How do I check if a spare part is in stock?"
+    },
+    "answer": {
+      "en": "Send us a message on WhatsApp with the scooter model and the part you need. Our team will check workshop stock and reply directly."
+    },
+    "category": "Service",
+    "order": 8
   }
 ]

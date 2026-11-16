@@ -8,21 +8,35 @@ export interface LocationMapProps {
   mapsLink: string | null;
   mapsEmbedSrc: string | null;
   addressText: string;
+  hours?: Array<{ day: string; open: string; close: string; closed?: boolean }> | null;
 }
 
-export function LocationMap({ mapsLink, mapsEmbedSrc, addressText }: LocationMapProps) {
+export function LocationMap({ mapsLink, mapsEmbedSrc, addressText, hours }: LocationMapProps) {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface-white overflow-hidden shadow-sm">
-      <div className="p-6 sm:p-8">
-        <div className="inline-block px-3 py-1 mb-3 rounded-full bg-brand-tint text-brand-primary text-xs font-semibold uppercase tracking-wider">
-          Visit Showroom
-        </div>
-        <h3 className="text-2xl sm:text-3xl font-bold text-text-heading mb-2">Find Us in Ledi</h3>
-        <p className="text-base text-text-muted mb-6 max-w-xl">{addressText}</p>
+    <div className="rounded-lg border border-border-subtle bg-surface-white overflow-hidden shadow-sm">
+      <div className="p-6 sm:p-8 text-left">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-text-heading tracking-tight mb-4">
+          Visit us
+        </h2>
+        <p className="text-base text-text-body mb-6 max-w-xl">{addressText}</p>
 
-        <div className="flex flex-wrap items-center gap-4">
+        {hours && hours.length > 0 && (
+          <div className="mb-6 border-t border-border-subtle pt-4">
+            <h3 className="text-xs font-bold text-text-heading mb-2">Showroom hours</h3>
+            <ul className="text-xs text-text-muted space-y-1">
+              {hours.map((h, i) => (
+                <li key={i} className="flex justify-between max-w-xs">
+                  <span>{h.day}</span>
+                  <span>{h.closed ? "Closed" : `${h.open} - ${h.close}`}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center gap-3">
           {mapsLink && (
             <Button href={mapsLink} isExternal variant="primary" size="md">
               <svg
@@ -37,19 +51,19 @@ export function LocationMap({ mapsLink, mapsEmbedSrc, addressText }: LocationMap
               >
                 <polygon points="3 11 22 2 13 21 11 13 3 11" />
               </svg>
-              Get Directions
+              Get directions
             </Button>
           )}
 
           <Button href={ROUTES.TEST_RIDE} variant="outline" size="md">
-            Schedule Showroom Visit
+            Book a test ride
           </Button>
         </div>
       </div>
 
-      {/* Embedded Map Section: Click-to-load (Amendment 11 & 16) */}
+      {/* Embedded Map Section: Click-to-load */}
       {mapsEmbedSrc ? (
-        <div className="border-t border-border-subtle bg-surface-grey relative min-h-[340px] flex items-center justify-center">
+        <div className="border-t border-border-subtle bg-surface-grey relative min-h-[320px] flex items-center justify-center">
           {isMapLoaded ? (
             <iframe
               src={mapsEmbedSrc}
@@ -64,25 +78,8 @@ export function LocationMap({ mapsLink, mapsEmbedSrc, addressText }: LocationMap
             />
           ) : (
             <div className="p-8 text-center max-w-md mx-auto">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-tint text-brand-primary">
-                <svg
-                  className="h-6 w-6"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <p className="text-sm text-text-body font-medium mb-1">Interactive Google Map</p>
-              <p className="text-xs text-text-muted mb-4">
-                To protect your privacy, map tiles load only when requested.
-              </p>
+              <p className="text-sm text-text-body font-medium mb-1">Google Maps</p>
+              <p className="text-xs text-text-muted mb-4">Map tiles load only when requested.</p>
               <Button variant="outline" size="sm" onClick={() => setIsMapLoaded(true)}>
                 Show Map
               </Button>
@@ -90,9 +87,8 @@ export function LocationMap({ mapsLink, mapsEmbedSrc, addressText }: LocationMap
           )}
         </div>
       ) : (
-        /* If mapsEmbedSrc is null, soften gracefully (Amendment 16) */
         <div className="px-6 sm:px-8 py-4 bg-surface-grey border-t border-border-subtle text-xs text-text-muted flex items-center justify-between">
-          <span>Map coordinates available on Google Maps.</span>
+          <span>Location coordinates on Google Maps.</span>
           {mapsLink && (
             <a
               href={mapsLink}
@@ -100,7 +96,7 @@ export function LocationMap({ mapsLink, mapsEmbedSrc, addressText }: LocationMap
               rel="noopener noreferrer"
               className="font-medium text-brand-primary hover:underline"
             >
-              Open in Maps App &rarr;
+              Open in Maps &rarr;
             </a>
           )}
         </div>

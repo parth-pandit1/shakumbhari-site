@@ -24,6 +24,7 @@ Shakumbhari Automobile is a high-performance, mobile-first static website built 
 
 1. **Content Layer (`/content`)**: All showroom data (site information, EV scooter models, services, FAQs, reviews, offers, leadership bio) resides in version-controlled JSON files.
 2. **Schema & Validation (`src/content/schemas.ts`)**: Every content file is strictly validated against Zod schemas. Unknown or unconfirmed fields are nullable; localized text is structured as `{ en: string, hi?: string }`.
+   - **Model Schema (`ModelSchema`)**: Models support real manufacturer configurations including `variants` (array of battery configurations with `batteryType`, `voltageV`, `capacityAh`, `claimedRangeKmMin`, `claimedRangeKmMax`, `offered`), `specs` (array of key-value technical specs), `colours` (with 6-digit hex swatches and names), `description` (`LocalizedText`), `topSpeedText`, and optional `claimedRangeKmMin`/`claimedRangeKmMax`. Prices and warranties remain strictly nullable until confirmed by the business owner.
 3. **Typed Loaders (`src/lib/content.ts`)**: Server-side helper functions read and validate JSON files at build time, returning fully typed domain entities.
 4. **App Router Pages (`src/app/`)**: Thin server components handle route metadata, JSON-LD structured data, Suspense boundaries (for `useSearchParams`), and compose feature sections.
 5. **Component Architecture**:

@@ -84,13 +84,13 @@
   --spacing-20: 5rem; /* 80px */
   --spacing-24: 6rem; /* 96px */
 
-  /* Border Radii */
+  /* Border Radii (Tightened to 6-10px for cards, full only for tags) */
   --radius-xs: 0.125rem; /* 2px */
   --radius-sm: 0.25rem; /* 4px */
-  --radius-md: 0.5rem; /* 8px */
-  --radius-lg: 0.75rem; /* 12px */
-  --radius-xl: 1rem; /* 16px */
-  --radius-2xl: 1.5rem; /* 24px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.625rem; /* 10px */
+  --radius-2xl: 0.75rem; /* 12px */
   --radius-full: 9999px;
 
   /* Elevation Shadows (crisp, multi-layered) */
@@ -133,9 +133,9 @@
   h6 {
     font-family: var(--font-display);
     color: var(--color-text-heading);
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    font-weight: 800;
   }
 
   /* Headings on dark surfaces must always be light/white */
@@ -177,8 +177,68 @@
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
 }
 
-/* Global prefers-reduced-motion Rule (disables non-essential animation) */
+/* Signboard-derived diagonal CSS motif */
+.sign-stripe-subtle {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 12px,
+    rgba(200, 16, 46, 0.08) 12px,
+    rgba(200, 16, 46, 0.08) 14px
+  );
+}
+
+.sign-stripe-dark {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 14px,
+    rgba(255, 255, 255, 0.04) 14px,
+    rgba(255, 255, 255, 0.04) 16px
+  );
+}
+
+/* Contact shadow for hero scooter */
+.contact-shadow {
+  filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.55));
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.hero-idle-float {
+  animation: heroFloat 5s ease-in-out infinite;
+}
+
+@keyframes heroSway {
+  0%,
+  100% {
+    transform: rotateX(0deg) rotateY(0deg) translateY(0);
+  }
+  30% {
+    transform: rotateX(2deg) rotateY(-3deg) translateY(-2px);
+  }
+  70% {
+    transform: rotateX(-2deg) rotateY(2deg) translateY(2px);
+  }
+}
+
+.hero-sway {
+  animation: heroSway 7s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .hero-idle-float,
+  .hero-sway {
+    animation: none !important;
+  }
   *,
   *::before,
   *::after {

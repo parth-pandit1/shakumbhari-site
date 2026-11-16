@@ -28,7 +28,7 @@ export function OffersBanner({ offers }: OffersBannerProps) {
           Offer
         </span>
         <span>
-          <strong>{currentOffer.title.en}</strong> — {currentOffer.description.en}
+          <strong>{currentOffer.title.en}</strong>: {currentOffer.description.en}
         </span>
       </div>
 

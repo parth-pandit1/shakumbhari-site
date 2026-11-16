@@ -40,8 +40,10 @@ describe("message helpers", () => {
   });
 
   it("enquiryMessage includes model name when specified", () => {
-    const msg = enquiryMessage("Sample Model A");
-    assert.ok(msg.includes("Sample Model A"));
+    const msg = enquiryMessage("Axel");
+    assert.ok(msg.includes("Axel"));
+    const msgPrive = enquiryMessage("Prive");
+    assert.ok(msgPrive.includes("Prive"));
   });
 
   it("testRideMessage returns generic text when model omitted", () => {
@@ -50,9 +52,11 @@ describe("message helpers", () => {
   });
 
   it("testRideMessage includes model name when specified", () => {
-    const msg = testRideMessage("Sample Model B");
-    assert.ok(msg.includes("Sample Model B"));
+    const msg = testRideMessage("Axel Pro");
+    assert.ok(msg.includes("Axel Pro"));
     assert.ok(msg.includes("book a test ride"));
+    const msgEvxtro = testRideMessage("EVXTRO");
+    assert.ok(msgEvxtro.includes("EVXTRO"));
   });
 
   it("serviceMessage returns service enquiry text", () => {

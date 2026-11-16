@@ -33,8 +33,7 @@ export function Footer({ site }: FooterProps) {
               </span>
             </div>
             <p className="text-sm text-zinc-400 max-w-md leading-relaxed mb-4">
-              {site.tagline.en} Specializing in electric two-wheelers, scheduled maintenance, and
-              spare parts in Ledi, Haryana.
+              {site.tagline.en} Electric scooters, service and spare parts in Ledi, Haryana.
             </p>
             <div className="flex flex-col gap-1 text-sm text-zinc-300">
               <div className="flex items-start gap-2">
@@ -112,7 +111,7 @@ export function Footer({ site }: FooterProps) {
           {/* Col 3: Tools & Services */}
           <div>
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
-              Tools & Support
+              Helpful Tools
             </h3>
             <ul className="space-y-2.5 text-sm text-zinc-400">
               <li>
@@ -147,9 +146,6 @@ export function Footer({ site }: FooterProps) {
           <div className="flex items-center gap-6">
             <Link href={ROUTES.PRIVACY} className="hover:text-zinc-300 transition-colors">
               Privacy Notice
-            </Link>
-            <Link href={ROUTES.STYLE_GUIDE} className="hover:text-zinc-300 transition-colors">
-              Design System
             </Link>
             {site.mapsLink && (
               <a

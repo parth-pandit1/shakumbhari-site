@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { ModelCard } from "./ModelCard";
+import { getModelRange } from "@/lib/format";
 import type { Model } from "@/content/schemas";
 
 interface ModelsFilterGridProps {
@@ -37,12 +38,13 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
         if (!model.priceExShowroom || model.priceExShowroom <= 85000) return false;
       }
 
+      const maxRange = getModelRange(model).max ?? model.claimedRangeKm;
       if (rangeFilter === "60-plus") {
-        if (!model.claimedRangeKm || model.claimedRangeKm < 60) return false;
+        if (!maxRange || maxRange < 60) return false;
       } else if (rangeFilter === "80-plus") {
-        if (!model.claimedRangeKm || model.claimedRangeKm < 80) return false;
+        if (!maxRange || maxRange < 80) return false;
       } else if (rangeFilter === "100-plus") {
-        if (!model.claimedRangeKm || model.claimedRangeKm < 100) return false;
+        if (!maxRange || maxRange < 100) return false;
       }
 
       return true;
@@ -57,7 +59,7 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
 
   return (
     <div>
-      <div className="p-4 sm:p-6 bg-surface-white border border-border-subtle rounded-2xl mb-8 shadow-xs">
+      <div className="p-4 sm:p-6 bg-surface-white border border-border-subtle rounded-lg mb-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-3">
             {types.length > 1 && (
@@ -99,7 +101,7 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
               >
                 <option value="all">Any Budget</option>
                 <option value="under-70k">Under ₹70,000</option>
-                <option value="70k-85k">₹70,000 &ndash; ₹85,000</option>
+                <option value="70k-85k">₹70,000 to ₹85,000</option>
                 <option value="above-85k">Above ₹85,000</option>
               </select>
             </div>
@@ -149,7 +151,7 @@ export function ModelsFilterGrid({ models, phone }: ModelsFilterGridProps) {
           ))}
         </div>
       ) : (
-        <div className="p-12 text-center bg-surface-grey border border-dashed border-border-default rounded-2xl">
+        <div className="p-12 text-center bg-surface-grey border border-dashed border-border-default rounded-lg">
           <p className="text-base text-text-heading font-semibold mb-2">
             No models match your current filter selection.
           </p>

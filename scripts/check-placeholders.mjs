@@ -26,6 +26,15 @@ const ROOT_DIR = path.resolve(__dirname, "..");
 loadEnvConfig(ROOT_DIR);
 
 const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+const previewSections = process.env.NEXT_PUBLIC_PREVIEW_SECTIONS === "true";
+
+if (allowIndexing && previewSections) {
+  console.error(
+    "FATAL: NEXT_PUBLIC_PREVIEW_SECTIONS cannot be 'true' when NEXT_PUBLIC_ALLOW_INDEXING is 'true'. Build failed."
+  );
+  process.exit(1);
+}
+
 const TARGET_DIRS = ["content", "src"];
 const PLACEHOLDER_PATTERN = /\[PLACEHOLDER/i;
 

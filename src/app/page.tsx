@@ -1,30 +1,28 @@
-import Link from "next/link";
 import { Container, Section } from "@/components/ui";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { FeaturedModelsCarousel } from "@/components/features/home/FeaturedModelsCarousel";
 import { WhyUsBento } from "@/components/features/home/WhyUsBento";
-import { WorkshopCareSection } from "@/components/features/home/WorkshopCareSection";
-import { LeadershipSection } from "@/components/features/home/LeadershipSection";
+import { ActionBand } from "@/components/features/home/ActionBand";
+import { CustomersSection } from "@/components/features/home/CustomersSection";
+import { ManagerSection } from "@/components/features/home/ManagerSection";
 import { FaqSection } from "@/components/features/home/FaqSection";
 import { LocationMap } from "@/components/features/location/LocationMap";
 import {
   getSite,
+  getModels,
   getFeaturedModels,
-  getServices,
   getFaqs,
-  getCustomers,
   getPerson,
+  getCustomers,
 } from "@/lib/content";
-import { buildWhatsAppLink, enquiryMessage } from "@/lib/whatsapp";
-import { ROUTES } from "@/lib/constants";
 
 export default function HomePage() {
   const site = getSite();
+  const allModels = getModels();
   const featuredModels = getFeaturedModels();
-  const services = getServices();
   const faqs = getFaqs();
-  const customers = getCustomers();
   const person = getPerson();
+  const customers = getCustomers();
 
   const addressText = [
     site.address.line1,
@@ -37,75 +35,50 @@ export default function HomePage() {
     .filter(Boolean)
     .join(", ");
 
-  const generalWhatsappUrl = buildWhatsAppLink(site.whatsappNumber ?? site.phone, enquiryMessage());
+  const activeWhatsappNumber = site.whatsappNumber ?? site.phone;
 
   return (
     <div>
-      {/* 1. Hero */}
-      <HeroSection site={site} />
+      {/* 1. Full-width dark hero with depth and model switcher */}
+      <HeroSection site={site} models={allModels} />
 
-      {/* 2. Featured Models Carousel */}
+      {/* 2. Featured Models (large cards, scroll-snap strip on mobile) */}
       <Section variant="grey">
         <Container>
           <FeaturedModelsCarousel models={featuredModels} phone={site.phone} />
-          <div className="mt-8 text-center">
-            <Link
-              href={ROUTES.MODELS}
-              className="inline-flex items-center text-sm font-semibold text-brand-primary hover:text-brand-hover underline underline-offset-4 transition-colors"
-            >
-              View all models and specifications &rarr;
-            </Link>
-          </div>
         </Container>
       </Section>
 
-      {/* 3. Why Choose Us Bento */}
-      <WhyUsBento whatsappUrl={generalWhatsappUrl} />
+      {/* 3. Plain three-column strip (Scooters, Service, Spare parts) */}
+      <WhyUsBento />
 
-      {/* 4. Service & Spares */}
-      <WorkshopCareSection services={services} phone={site.phone} />
+      {/* 4. Full-width red action band with Call and WhatsApp buttons */}
+      <ActionBand phone={site.phone} whatsappNumber={site.whatsappNumber} />
 
-      {/* 5. Showroom Leadership */}
-      <LeadershipSection person={person} phone={site.phone} />
-
-      {/* 6. Recent Deliveries (consent-gated per Rule 5) */}
-      {customers.length > 0 && (
-        <Section variant="grey">
-          <Container>
-            <h2 className="text-2xl sm:text-3xl font-bold text-text-heading mb-6">
-              Recent Showroom Deliveries
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {customers.map((c) => (
-                <div
-                  key={c.id}
-                  className="p-6 rounded-xl bg-surface-white border border-border-subtle"
-                >
-                  <p className="text-sm text-text-body mb-3 font-medium">
-                    &ldquo;{c.review.en}&rdquo;
-                  </p>
-                  <p className="text-xs font-bold text-text-heading">{c.name}</p>
-                  {c.model && <p className="text-xs text-text-muted">{c.model}</p>}
-                </div>
-              ))}
-            </div>
-          </Container>
-        </Section>
-      )}
-
-      {/* 7. FAQ */}
-      <FaqSection faqs={faqs} whatsappUrl={generalWhatsappUrl} />
-
-      {/* 8. Location */}
+      {/* 5. Visit us section (address text, Get directions, map when exists, hours if not null) */}
       <Section variant="grey" id="location">
         <Container size="md">
           <LocationMap
             mapsLink={site.mapsLink}
             mapsEmbedSrc={site.mapsEmbedSrc}
             addressText={addressText}
+            hours={site.hours}
           />
         </Container>
       </Section>
+
+      {/* 6. Happy Customers */}
+      <CustomersSection
+        customers={customers}
+        googleReviewsUrl={site.googleReviewsUrl}
+        whatsappNumber={activeWhatsappNumber}
+      />
+
+      {/* 7. Manager */}
+      <ManagerSection person={person} site={site} />
+
+      {/* 8. FAQ */}
+      <FaqSection faqs={faqs} phone={site.phone} whatsappNumber={site.whatsappNumber} />
     </div>
   );
 }

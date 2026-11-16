@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui";
-import { formatPrice, formatRange, formatTopSpeed } from "@/lib/format";
+import { formatPrice, formatModelRange, formatTopSpeed } from "@/lib/format";
 import { buildWhatsAppLink, enquiryMessage } from "@/lib/whatsapp";
 import { DISCLAIMERS } from "@/lib/constants";
 import type { Model } from "@/content/schemas";
@@ -65,11 +65,11 @@ export function CompareView({ models, phone }: CompareViewProps) {
           return (
             <div
               key={slotIndex}
-              className="p-4 rounded-xl bg-surface-white border border-border-subtle shadow-xs"
+              className="p-4 rounded-lg bg-surface-white border border-border-subtle"
             >
               <label
                 htmlFor={`select-model-${slotIndex}`}
-                className="block text-xs font-bold text-text-heading uppercase tracking-wider mb-2"
+                className="block text-xs font-semibold text-text-heading mb-2"
               >
                 Model Slot {slotIndex + 1}
               </label>
@@ -105,7 +105,7 @@ export function CompareView({ models, phone }: CompareViewProps) {
       )}
 
       {selectedModels.length > 0 ? (
-        <div className="overflow-x-auto rounded-2xl border border-border-subtle bg-surface-white shadow-sm">
+        <div className="overflow-x-auto rounded-lg border border-border-subtle bg-surface-white">
           <table className="w-full border-collapse text-left text-sm min-w-[600px]">
             <thead>
               <tr className="border-b border-border-subtle bg-surface-grey">
@@ -127,14 +127,21 @@ export function CompareView({ models, phone }: CompareViewProps) {
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5">
-                    <div className="relative aspect-[16/10] w-full max-w-[220px] rounded-lg overflow-hidden bg-surface-grey">
-                      <Image
-                        src={m.photos[0] ?? "/images/models/sample-model-a.webp"}
-                        alt={m.name.en}
-                        fill
-                        className="object-cover"
-                        sizes="220px"
-                      />
+                    <div className="relative aspect-[16/10] w-full max-w-[220px] rounded-lg overflow-hidden bg-surface-grey border border-border-subtle flex items-center justify-center">
+                      {m.photos && m.photos.length > 0 ? (
+                        <Image
+                          src={m.photos[0].src}
+                          alt={m.photos[0].alt}
+                          fill
+                          className="object-contain"
+                          sizes="220px"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="text-center p-2">
+                          <p className="text-xs font-semibold text-text-muted">Photo coming soon</p>
+                        </div>
+                      )}
                     </div>
                   </td>
                 ))}
@@ -162,7 +169,7 @@ export function CompareView({ models, phone }: CompareViewProps) {
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 font-bold text-brand-primary">
-                    {formatRange(m.claimedRangeKm) ?? "Call showroom"}
+                    {formatModelRange(m) ?? "Call showroom"}
                   </td>
                 ))}
               </tr>
@@ -173,7 +180,7 @@ export function CompareView({ models, phone }: CompareViewProps) {
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 text-text-body font-medium">
-                    {formatTopSpeed(m.topSpeedKmh) ?? "Call showroom"}
+                    {formatTopSpeed(m.topSpeedKmh, m.topSpeedText) ?? "Ask at the showroom"}
                   </td>
                 ))}
               </tr>
@@ -217,7 +224,7 @@ export function CompareView({ models, phone }: CompareViewProps) {
                 </td>
                 {selectedModels.map((m) => (
                   <td key={m.id} className="p-4 sm:p-5 text-text-body">
-                    {m.colours.join(", ") || "Standard shades"}
+                    {m.colours.map((c) => c.name).join(", ") || "Standard shades"}
                   </td>
                 ))}
               </tr>
@@ -235,7 +242,7 @@ export function CompareView({ models, phone }: CompareViewProps) {
                       size="sm"
                       fullWidth
                     >
-                      Enquire on WA
+                      WhatsApp
                     </Button>
                   </td>
                 ))}
@@ -244,7 +251,7 @@ export function CompareView({ models, phone }: CompareViewProps) {
           </table>
         </div>
       ) : (
-        <div className="p-12 text-center bg-surface-white rounded-2xl border border-border-subtle">
+        <div className="p-12 text-center bg-surface-white rounded-lg border border-border-subtle">
           <p className="text-base text-text-heading font-semibold">
             Please select at least one model to compare.
           </p>

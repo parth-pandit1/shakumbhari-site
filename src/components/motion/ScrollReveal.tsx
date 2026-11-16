@@ -22,7 +22,7 @@ export function ScrollReveal({
     return <div className={className}>{children}</div>;
   }
 
-  const offset = 24;
+  const offset = 12;
   const initialOffset = {
     up: { y: offset, x: 0 },
     down: { y: -offset, x: 0 },
@@ -35,11 +35,11 @@ export function ScrollReveal({
     <motion.div
       initial={{ opacity: 0, ...initialOffset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true }}
       transition={{
-        duration: 0.45,
+        duration: 0.4,
         delay,
-        ease: [0.16, 1, 0.3, 1], // ease-out-expo
+        ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
     >

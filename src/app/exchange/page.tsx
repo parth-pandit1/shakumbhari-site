@@ -14,22 +14,18 @@ export default function ExchangePage() {
   const models = getModels();
 
   return (
-    <div className="bg-surface-grey min-h-screen py-10 sm:py-14">
-      <Container>
-        <div className="text-center max-w-xl mx-auto mb-8">
-          <div className="inline-block px-3 py-1 mb-2 rounded-full bg-brand-tint text-brand-primary text-xs font-semibold uppercase tracking-wider">
-            Vehicle Upgrade
+    <div className="bg-surface-grey min-h-screen py-12 sm:py-16">
+      <Container size="sm">
+        <div className="max-w-[560px] mx-auto">
+          {/* Centred heading standing alone */}
+          <div className="text-center mb-8">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-heading">
+              Exchange your old two-wheeler
+            </h1>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-text-heading">
-            Exchange Your Old Two-Wheeler
-          </h1>
-          <p className="mt-2 text-base text-text-muted">
-            Trade in your petrol motorcycle or scooter towards a brand-new electric scooter. Share
-            your vehicle details to start a valuation on WhatsApp.
-          </p>
-        </div>
 
-        <ExchangeForm models={models} phone={site.phone} />
+          <ExchangeForm models={models} phone={site.phone} />
+        </div>
       </Container>
     </div>
   );

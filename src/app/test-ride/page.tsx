@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui";
 import { TestRideForm } from "@/components/features/forms/TestRideForm";
@@ -14,22 +15,26 @@ export default function TestRidePage() {
   const models = getModels();
 
   return (
-    <div className="bg-surface-grey min-h-screen py-10 sm:py-14">
-      <Container>
-        <div className="text-center max-w-xl mx-auto mb-8">
-          <div className="inline-block px-3 py-1 mb-2 rounded-full bg-brand-tint text-brand-primary text-xs font-semibold uppercase tracking-wider">
-            Showroom Experience
+    <div className="bg-surface-grey min-h-screen py-12 sm:py-16">
+      <Container size="sm">
+        <div className="max-w-[560px] mx-auto">
+          {/* Centred heading standing alone */}
+          <div className="text-center mb-8">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-heading">
+              Book a test ride
+            </h1>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-text-heading">
-            Book an EV Scooter Test Ride
-          </h1>
-          <p className="mt-2 text-base text-text-muted">
-            Experience smooth electric acceleration and quiet riding firsthand. Pick your model and
-            preferred date to book directly on WhatsApp.
-          </p>
-        </div>
 
-        <TestRideForm models={models} phone={site.phone} />
+          <Suspense
+            fallback={
+              <div className="p-12 text-center text-text-muted bg-surface-white rounded-lg border border-border-subtle">
+                Loading test ride form...
+              </div>
+            }
+          >
+            <TestRideForm models={models} phone={site.phone} />
+          </Suspense>
+        </div>
       </Container>
     </div>
   );

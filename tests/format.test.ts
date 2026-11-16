@@ -24,14 +24,27 @@ describe("formatRange", () => {
     assert.strictEqual(formatRange(75), "Claimed range: 75 km");
   });
 
+  it("formats claimed range with min and max variant range", () => {
+    assert.strictEqual(formatRange(45, 100), "Claimed range: 45 to 100 km");
+    assert.strictEqual(formatRange(80, 80), "Claimed range: 80 km");
+  });
+
   it("returns null when range is null so UI softens/hides it", () => {
     assert.strictEqual(formatRange(null), null);
+    assert.strictEqual(formatRange(null, null), null);
   });
 });
 
 describe("formatTopSpeed", () => {
   it("formats top speed with km/h unit", () => {
     assert.strictEqual(formatTopSpeed(60), "Top speed: 60 km/h");
+  });
+
+  it("formats top speed with custom speed text override", () => {
+    assert.strictEqual(
+      formatTopSpeed(25, "25 km/h, 3 speed modes"),
+      "Top speed: 25 km/h, 3 speed modes"
+    );
   });
 
   it("returns null when top speed is null", () => {

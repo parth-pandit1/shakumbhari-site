@@ -19,10 +19,7 @@ export function FormField({
 }: FormFieldProps) {
   return (
     <div className={className}>
-      <label
-        htmlFor={id}
-        className="block text-xs font-bold text-text-heading uppercase tracking-wider mb-1"
-      >
+      <label htmlFor={id} className="block text-xs font-semibold text-text-heading mb-1">
         {label} {isRequired && <span className="text-brand-primary">*</span>}
       </label>
       {children}

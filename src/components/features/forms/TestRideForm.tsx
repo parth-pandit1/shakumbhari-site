@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -20,24 +21,42 @@ const TestRideSchema = z.object({
 
 type TestRideFormData = z.infer<typeof TestRideSchema>;
 
-interface TestRideFormProps {
+export interface TestRideFormProps {
   models: Model[];
   phone: string;
 }
 
 export function TestRideForm({ models, phone }: TestRideFormProps) {
+  const searchParams = useSearchParams();
+  const modelQuery = searchParams.get("model");
+
+  const initialModelName =
+    models.find(
+      (m) => m.slug === modelQuery || m.name.en.toLowerCase() === modelQuery?.toLowerCase()
+    )?.name.en ??
+    models[0]?.name.en ??
+    "";
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<TestRideFormData>({
     resolver: zodResolver(TestRideSchema),
     defaultValues: {
-      model: models[0]?.name.en ?? "",
+      model: initialModelName,
     },
   });
+
+  // Keep form in sync if search param changes
+  useEffect(() => {
+    if (initialModelName) {
+      setValue("model", initialModelName);
+    }
+  }, [initialModelName, setValue]);
 
   const onSubmit = (data: TestRideFormData) => {
     const message = [
@@ -57,7 +76,7 @@ export function TestRideForm({ models, phone }: TestRideFormProps) {
   };
 
   return (
-    <div className="p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm max-w-xl mx-auto">
+    <div className="p-6 sm:p-8 rounded-lg bg-surface-white border border-border-subtle shadow-sm w-full text-left">
       {isSubmitted ? (
         <FormSuccess
           description="Your test ride details have been formatted into a prefilled WhatsApp message. Send the message on WhatsApp to confirm slot timing with our showroom team."
@@ -69,7 +88,7 @@ export function TestRideForm({ models, phone }: TestRideFormProps) {
             <input
               id="tr-name"
               type="text"
-              placeholder="e.g. Rahul Sharma"
+              placeholder="Enter your name"
               {...register("name")}
               className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-border-default focus:border-brand-primary"
             />
@@ -133,20 +152,19 @@ export function TestRideForm({ models, phone }: TestRideFormProps) {
             <textarea
               id="tr-notes"
               rows={2}
-              placeholder="e.g. Preferred time of visit, looking for long range..."
+              placeholder="Preferred time of visit or requirements..."
               {...register("notes")}
               className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-border-default focus:border-brand-primary"
             />
           </FormField>
 
-          <p className="text-[11px] text-text-muted leading-relaxed">
-            Note: Submitting this form directly opens WhatsApp on your phone or desktop. We do not
-            store personal information on an external server.
-          </p>
-
           <Button type="submit" variant="whatsapp" size="lg" fullWidth disabled={isSubmitting}>
-            Confirm &amp; Book via WhatsApp
+            Book a test ride
           </Button>
+
+          <p className="text-[11px] text-text-muted text-center pt-1">
+            Submitting opens WhatsApp with your booking details prefilled.
+          </p>
         </form>
       )}
     </div>

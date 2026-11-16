@@ -8,7 +8,7 @@ export interface ModalProps {
   title: string;
   description?: string;
   children: ReactNode;
-  maxWidth?: "sm" | "md" | "lg";
+  maxWidth?: "sm" | "md" | "lg" | "xl" | "full";
 }
 
 export function Modal({
@@ -39,6 +39,8 @@ export function Modal({
     sm: "max-w-md",
     md: "max-w-lg",
     lg: "max-w-2xl",
+    xl: "max-w-4xl",
+    full: "max-w-5xl",
   }[maxWidth];
 
   return (
@@ -53,7 +55,7 @@ export function Modal({
       <div className="fixed inset-0 -z-10" onClick={onClose} aria-hidden="true" />
 
       <div
-        className={`w-full ${maxWidthClasses} bg-surface-white rounded-2xl border border-border-subtle shadow-xl overflow-hidden p-6 relative`}
+        className={`w-full ${maxWidthClasses} bg-surface-white rounded-lg border border-border-subtle shadow-xl overflow-hidden p-6 relative`}
       >
         <div className="flex items-start justify-between pb-4 border-b border-border-subtle">
           <div>

@@ -9,31 +9,28 @@ import { MobileStickyBar } from "@/components/layout/MobileStickyBar";
 import { OffersBanner } from "@/components/layout/OffersBanner";
 
 const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://shakumbhariauto.in";
 
 export const metadata: Metadata = {
   title: {
-    default: "Shakumbhari Automobile — Electric Scooters & Service in Ledi",
+    default: "Shakumbhari Automobile: Electric Scooters & Service in Ledi",
     template: "%s | Shakumbhari Automobile",
   },
   description:
     "Shakumbhari Automobile: Electric scooter showroom, service and spare parts in Chhachhrauli Road, Ledi, Haryana.",
-  robots: allowIndexing
-    ? {
-        index: true,
-        follow: true,
-      }
-    : {
-        index: false,
-        follow: false,
-      },
+  robots: allowIndexing ? { index: true, follow: true } : { index: false, follow: false },
+  ...(allowIndexing && {
+    metadataBase: new URL(siteUrl),
+  }),
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const site = getSite();
   const offers = getOffers();
 
-  // LocalBusiness JSON-LD (Emitted ONLY when indexing is allowed, Phase 5)
-  // Rendered without dangerouslySetInnerHTML to strictly adhere to Rule 10
+  // LocalBusiness JSON-LD: emitted ONLY when indexing is allowed.
+  // Null fields (city, district, state, pincode, mapsLink) are omitted intentionally.
   const jsonLd = allowIndexing
     ? {
         "@context": "https://schema.org",
@@ -45,10 +42,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           "@type": "PostalAddress",
           streetAddress: site.address.line1,
           addressLocality: site.address.area,
-          addressRegion: "Haryana",
+          addressRegion: site.address.state ?? "Haryana",
           addressCountry: "IN",
+          ...(site.address.pincode && { postalCode: site.address.pincode }),
         },
-        hasMap: site.mapsLink || undefined,
+        ...(site.mapsLink && { hasMap: site.mapsLink }),
       }
     : null;
 

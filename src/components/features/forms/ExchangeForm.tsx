@@ -57,7 +57,7 @@ export function ExchangeForm({ models, phone }: ExchangeFormProps) {
   };
 
   return (
-    <div className="p-6 sm:p-8 rounded-2xl bg-surface-white border border-border-subtle shadow-sm max-w-xl mx-auto">
+    <div className="p-6 sm:p-8 rounded-lg bg-surface-white border border-border-subtle shadow-sm w-full text-left">
       {isSubmitted ? (
         <FormSuccess
           description="Your vehicle details have been formatted. Send the message on WhatsApp to receive a preliminary exchange appraisal and visit guidance."
@@ -70,7 +70,7 @@ export function ExchangeForm({ models, phone }: ExchangeFormProps) {
             <input
               id="ex-name"
               type="text"
-              placeholder="e.g. Ramesh Kumar"
+              placeholder="Enter your name"
               {...register("name")}
               className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-border-default focus:border-brand-primary"
             />
@@ -151,14 +151,13 @@ export function ExchangeForm({ models, phone }: ExchangeFormProps) {
             </select>
           </FormField>
 
-          <p className="text-[11px] text-text-muted leading-relaxed">
-            Note: Submitting formats a WhatsApp message. Final vehicle evaluation is carried out
-            in-person at our Ledi showroom after physical inspection.
-          </p>
-
           <Button type="submit" variant="whatsapp" size="lg" fullWidth disabled={isSubmitting}>
-            Request Exchange Valuation on WhatsApp
+            Request valuation on WhatsApp
           </Button>
+
+          <p className="text-[11px] text-text-muted text-center pt-1">
+            Submitting opens WhatsApp with your vehicle details prefilled.
+          </p>
         </form>
       )}
     </div>

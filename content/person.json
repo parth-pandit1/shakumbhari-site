@@ -3,5 +3,6 @@
   "role": "Manager",
   "photo": null,
   "message": { "en": "[PLACEHOLDER manager message]" },
-  "consent": false
+  "consent": false,
+  "facts": []
 }

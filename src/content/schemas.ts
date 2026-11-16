@@ -75,6 +75,7 @@ export const SiteSchema = z.object({
   social: z.object({
     instagram: HttpsUrlSchema.nullable(),
   }),
+  googleReviewsUrl: HttpsUrlSchema.nullable().optional(),
   logo: z.object({
     src: z.string().min(1),
     alt: z.string().min(1),
@@ -84,16 +85,59 @@ export type Site = z.infer<typeof SiteSchema>;
 
 // ─── Person ────────────────────────────────────────────────
 
+export const PersonFactSchema = z.object({
+  label: z.string().min(1),
+  value: z.string().min(1),
+});
+export type PersonFact = z.infer<typeof PersonFactSchema>;
+
 export const PersonSchema = z.object({
-  name: z.string().min(1),
-  role: z.string().min(1),
-  photo: z.string().nullable(),
-  message: LocalizedTextSchema,
+  name: z.string().nullable().default(null),
+  role: z.string().nullable().default(null),
+  photo: z.string().nullable().default(null),
+  message: LocalizedTextSchema.nullable().optional(),
   consent: z.boolean().default(false),
+  facts: z.array(PersonFactSchema).default([]),
 });
 export type Person = z.infer<typeof PersonSchema>;
 
 // ─── Model ─────────────────────────────────────────────────
+
+export const ModelVariantSchema = z.object({
+  label: z.string().min(1),
+  batteryType: z.enum(["Lead-acid", "Li-ion"]),
+  voltageV: z.number().positive(),
+  capacityAh: z.number().positive(),
+  claimedRangeKmMin: z.number().positive(),
+  claimedRangeKmMax: z.number().positive(),
+  offered: z.boolean().default(true),
+});
+export type ModelVariant = z.infer<typeof ModelVariantSchema>;
+
+export const ModelSpecItemSchema = z.object({
+  label: z.string().min(1),
+  value: z.string().min(1),
+});
+export type ModelSpecItem = z.infer<typeof ModelSpecItemSchema>;
+
+export const ModelColourSchema = z.object({
+  name: z.string().min(1),
+  hex: z.string().regex(/^#[0-9A-Fa-f]{6}$/, "Must be a 6-digit hex colour code"),
+});
+export type ModelColour = z.infer<typeof ModelColourSchema>;
+
+export const ModelPhotoSchema = z.object({
+  src: z.string().min(1),
+  alt: z.string().min(1),
+  colour: z.string().min(1),
+});
+export type ModelPhoto = z.infer<typeof ModelPhotoSchema>;
+
+export const ModelSpinFramesSchema = z.object({
+  count: z.number().int().positive(),
+  pathPattern: z.string().min(1),
+});
+export type ModelSpinFrames = z.infer<typeof ModelSpinFramesSchema>;
 
 export const ModelSchema = z.object({
   id: z.string().min(1),
@@ -101,16 +145,25 @@ export const ModelSchema = z.object({
   name: LocalizedTextSchema,
   brand: z.string().nullable(),
   type: z.enum(["EV", "Petrol"]),
+  description: LocalizedTextSchema.nullable().default(null),
   priceExShowroom: z.number().positive().nullable(),
-  claimedRangeKm: z.number().positive().nullable(),
-  topSpeedKmh: z.number().positive().nullable(),
-  batteryType: z.string().nullable(),
-  batteryCapacity: z.string().nullable(),
-  chargingTime: z.string().nullable(),
-  warranty: z.string().nullable(),
-  colours: z.array(z.string()).default([]),
+  claimedRangeKm: z.number().positive().nullable().default(null),
+  claimedRangeKmMin: z.number().positive().nullable().optional(),
+  claimedRangeKmMax: z.number().positive().nullable().optional(),
+  topSpeedKmh: z.number().positive().nullable().default(null),
+  topSpeedText: z.string().nullable().default(null),
+  batteryType: z.string().nullable().default(null),
+  batteryCapacity: z.string().nullable().default(null),
+  chargingTime: z.string().nullable().default(null),
+  warranty: z.string().nullable().default(null),
+  warrantyText: z.string().nullable().optional(),
+  available: z.boolean().default(true),
+  colours: z.array(ModelColourSchema).default([]),
+  variants: z.array(ModelVariantSchema).default([]),
+  specs: z.array(ModelSpecItemSchema).default([]),
   highlights: z.array(LocalizedTextSchema).default([]),
-  photos: z.array(z.string()).default([]),
+  photos: z.array(ModelPhotoSchema).default([]),
+  spinFrames: ModelSpinFramesSchema.nullable().optional(),
   isSample: z.boolean().default(false),
   featured: z.boolean().default(false),
 });
@@ -131,14 +184,21 @@ export type Offer = z.infer<typeof OfferSchema>;
 
 // ─── Customer ──────────────────────────────────────────────
 
+export const CustomerImageSchema = z.object({
+  src: z.string().min(1),
+  alt: z.string().min(1),
+});
+export type CustomerImage = z.infer<typeof CustomerImageSchema>;
+
 export const CustomerSchema = z.object({
   id: z.string().min(1),
-  name: z.string().min(1),
-  photo: z.string().nullable(),
-  model: z.string().nullable(),
-  review: LocalizedTextSchema,
-  rating: z.number().min(1).max(5),
+  firstName: z.string().min(1),
+  vehicleModel: z.string().min(1),
+  image: CustomerImageSchema,
+  date: z.string().min(1),
   consent: z.boolean().default(false),
+  quote: z.string().nullable().optional(),
+  quoteConsent: z.boolean().default(false),
 });
 export type Customer = z.infer<typeof CustomerSchema>;
 
@@ -149,6 +209,7 @@ export const FaqSchema = z.object({
   question: LocalizedTextSchema,
   answer: LocalizedTextSchema,
   order: z.number().int().default(0),
+  category: z.string().optional(),
 });
 export type Faq = z.infer<typeof FaqSchema>;
 

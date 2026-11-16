@@ -49,6 +49,22 @@ All business data is separated from presentation and lives in the `/content` dir
 3. Place model photos (`.webp`) in `public/images/models/`.
 4. Run `npm run validate-content` to ensure all fields adhere to the schema in `src/content/schemas.ts`.
 
+### 360-Degree Interactive Spin Viewer
+
+The model detail page supports an optional 360-degree product spinner via the `Spin360` component. To add a spin view for a model:
+
+1. **Capture frames**: Shoot 24 to 36 sequential turntable frames covering a full 360-degree rotation.
+2. **Format and dimensions**: Convert frames to WebP, max 1200 px wide without upscaling.
+3. **File naming**: Use zero-padded sequential names, e.g. `public/images/spin/<model-slug>/<model-slug>-01.webp` through `...-36.webp`.
+4. **Register in schema**: In `content/models.json`, add the `spinFrames` object to that model:
+   ```json
+   "spinFrames": {
+     "count": 36,
+     "pathPattern": "/images/spin/<model-slug>/<model-slug>-{index}.webp"
+   }
+   ```
+5. If `spinFrames` is omitted or null, the model page displays the standard gallery view. Visitors with `prefers-reduced-motion` enabled are automatically served the static main photo.
+
 ## Search Engine Indexing & Pre-Launch Protection
 
 To prevent unfinished placeholder content from being indexed, search engine indexing is strictly disabled by default:
@@ -80,3 +96,21 @@ This project produces a completely static export inside the `/out` directory, op
 ### Pre-Launch Headers
 
 A `public/_headers` file is included to send `X-Robots-Tag: noindex, nofollow` on Cloudflare Pages preview deployments. This line must be removed upon official domain launch.
+
+## Launch Checklist
+
+Follow these steps before making the showroom website public to customers and search engines:
+
+1. **Confirm Business Facts**: Complete and verify every item listed in `content/CONFIRM.md` with the business owner (prices, warranty, manager greeting, hours, GSTIN, and stocked variants).
+2. **Verify Placeholder Guard**: Run `npm run build` with `NEXT_PUBLIC_ALLOW_INDEXING=true` in your local environment to ensure zero `[PLACEHOLDER]` tokens remain in `/content` or `/src`. The build must succeed with zero warnings.
+3. **Remove Pre-launch Robot Header**: Open `public/_headers` and delete the `X-Robots-Tag: noindex, nofollow` line.
+4. **Configure Cloudflare Environment**: In the Cloudflare Pages project settings, add the following production environment variables:
+   - `NEXT_PUBLIC_ALLOW_INDEXING`: `true`
+   - `NEXT_PUBLIC_SITE_URL`: `https://your-custom-domain.com` (no trailing slash)
+5. **Cloudflare Pages Build Settings**:
+   - **Framework preset**: None / Next.js (Static HTML Export)
+   - **Build command**: `npm run build`
+   - **Build output directory**: `out`
+   - **Node.js version**: Matches `.nvmrc` (v24)
+6. **Connect Custom Domain**: In Cloudflare Pages, navigate to Custom Domains and connect your showroom apex and `www` domains with automatic SSL.
+7. **Search Console & Business Profile**: Submit `https://your-custom-domain.com/sitemap.xml` to Google Search Console and update your Google Business Profile with the live showroom website URL.
